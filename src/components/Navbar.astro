@@ -190,12 +190,21 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       height: 100dvh;
       background: var(--cream);
       z-index: 90;
-      /* Kurzes, gleich schnelles Aus-/Einblenden. Lineare Kurve, damit die
-         iOS-URL-Leiste (die ihre Tönung von der Fläche dahinter abnimmt)
-         synchron mit dem restlichen Menü ein-/ausblendet – ease-in-out ließ den
-         unteren Balken durch langsamen Start/Ende vor- bzw. nachlaufen. */
+      /* Ein-/Ausblende-Dauer getrennt einstellbar ("variabel"). Lineare Kurve,
+         damit die iOS-URL-Leiste (Tönung von der Fläche dahinter) synchron zum
+         Menü blendet. Für sofortiges Schließen: --nav-fade-out: 0s. */
+      --nav-fade-in: 0.3s;
+      --nav-fade-out: 0.12s;
       opacity: 0;
-      transition: opacity 0.2s linear, visibility 0s linear 0.2s;
+      /* Geschlossen zusätzlich nach rechts aus dem Bild (und hinter der Bar weg)
+         parken, sonst bleibt bei schnellem Doppel-Tipp unten ein beiger Rest
+         "hängen". transform & visibility erst NACH dem Ausblenden umschalten,
+         damit kein Slide sichtbar wird. */
+      transform: translateX(101%);
+      transition:
+        opacity var(--nav-fade-out) linear,
+        transform 0s linear var(--nav-fade-out),
+        visibility 0s linear var(--nav-fade-out);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
@@ -231,7 +240,8 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     :global(body.nav-open) .nav {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.2s linear, visibility 0s;
+      transform: translateX(0); /* sofort an Position, nur Opacity blendet ein */
+      transition: opacity var(--nav-fade-in) linear, transform 0s;
     }
     /* Kein CSS-Scroll-Lock (kein position:fixed/overflow auf <body>) → die Seite
        verschiebt sich beim Öffnen NICHT und die iOS-URL-Leiste wird nicht
