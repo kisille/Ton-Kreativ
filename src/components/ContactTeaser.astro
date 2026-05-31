@@ -1,0 +1,47 @@
+---
+/**
+ * ContactTeaser — kurzer Kontakt-Anriss mit Verweis aufs Kontaktformular.
+ */
+import { site } from '../data/site';
+---
+
+<section class="contact">
+  <div class="container contact__inner">
+    <span class="eyebrow">Kontakt</span>
+    <h2>Lass uns gemeinsam etwas Schönes gestalten</h2>
+    <p class="lead">
+      Für Fragen oder Terminvereinbarungen kannst du mich gerne über das
+      Kontaktformular erreichen. Ich freue mich darauf, von dir zu hören!
+    </p>
+    <div class="contact__actions">
+      <a class="btn btn--primary" href="/kontakt">Zum Kontaktformular</a>
+      <a class="btn btn--ghost" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding-block: clamp(3.5rem, 9vw, var(--space-3xl));
+  }
+  .contact__inner {
+    background: var(--sand-soft);
+    border-radius: var(--radius-lg);
+    padding: clamp(2.5rem, 6vw, 4.5rem);
+    text-align: center;
+  }
+  .contact h2 {
+    margin: 0 auto var(--space-lg);
+    max-width: 18ch;
+  }
+  .contact .lead {
+    margin-inline: auto;
+  }
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+</style>

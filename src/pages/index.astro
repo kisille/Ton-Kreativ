@@ -1,0 +1,108 @@
+---
+/**
+ * Startseite (Home) — komponiert Hero, Dienstleistungen, FAQ und Kontakt-Teaser.
+ * Inhalte gemäß Projekt-Brief §1.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import FaqItem from '../components/FaqItem.astro';
+import ContactTeaser from '../components/ContactTeaser.astro';
+import { IMG_BASE } from '../data/site';
+---
+
+<BaseLayout>
+  <Hero />
+
+  <!-- Dienstleistungen -->
+  <section class="section section--sand" id="angebote">
+    <div class="container">
+      <header class="section-head">
+        <span class="eyebrow">Was dich erwartet</span>
+        <h2>Kreatives Gestalten für Gross &amp; Klein</h2>
+        <p class="lead">
+          Ob ein entspannter Mal-Nachmittag, dein erstes Werk an Ton oder ein
+          gemütlicher Abend mit Freundinnen — bei Ton-kreativ findet jede:r den
+          passenden Rahmen.
+        </p>
+      </header>
+
+      <div class="card-grid">
+        <ServiceCard
+          title="Töpfern für Kinder"
+          image={`${IMG_BASE}l1150349-2.jpg`}
+          alt="Kinder formen und gestalten Ton im Atelier"
+          href="/buche-malzeit"
+          cta="Termin anfragen"
+        >
+          Ab 6 Jahren herzlich willkommen. Egal ob einzigartige Becher, lustige
+          Tiere oder einfach Spass am Formen — bei uns gibt es keinen Druck,
+          dass etwas perfekt werden muss.
+        </ServiceCard>
+
+        <ServiceCard
+          title="Verschiedene Veranstaltungen"
+          image={`${IMG_BASE}videocapture_20260522-121731.jpg`}
+          alt="Gruppe bei einer kreativen Töpfer-Veranstaltung"
+          href="/events"
+          cta="Termine ansehen"
+        >
+          Freundinnen-Abend, Töpferkurse, Männerabend (ja, auch Männer können
+          töpfern) oder Kindergeburtstag. Die aktuellen Termine findest du
+          jederzeit hier auf der Seite.
+        </ServiceCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container container--narrow">
+      <header class="section-head text-center">
+        <span class="eyebrow">Häufige Fragen</span>
+        <h2>Gut zu wissen</h2>
+      </header>
+
+      <div class="faq-list">
+        <FaqItem question="Wie lange dauert es, bis mein Kunstwerk abholbereit ist?">
+          Je nach Komplexität dauert es etwa 4–5 Wochen. Jedes Stück wird zweimal
+          gebrannt und auf Wunsch glasiert.
+        </FaqItem>
+        <FaqItem question="Können Tonfiguren individuell gestaltet werden?">
+          Ja, unbedingt! Bei mir kannst du dich frei entfalten und deiner
+          Kreativität freien Lauf lassen.
+        </FaqItem>
+        <FaqItem question="Bieten Sie Workshops oder Kurse an?">
+          Ja — frag einfach nach oder sieh hier auf der Seite nach. Ab 4 Personen
+          sind auch individuelle Terminwünsche möglich.
+        </FaqItem>
+      </div>
+    </div>
+  </section>
+
+  <ContactTeaser />
+</BaseLayout>
+
+<style>
+  .section-head {
+    max-width: 52rem;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .section-head h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  .card-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  @media (min-width: 720px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--line);
+  }
+</style>

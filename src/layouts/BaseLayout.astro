@@ -1,0 +1,70 @@
+---
+/**
+ * BaseLayout — gemeinsames Grundgerüst für alle Seiten.
+ * Enthält <head> (Meta, Fonts), globale Stile sowie Navbar + Footer.
+ */
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Ton-kreativ — Töpfer- & Keramik-Atelier in Satteins',
+  description = 'Töpfer- und Keramik-Atelier von Jana Gams in Satteins (Vorarlberg). Keramik bemalen, Töpfern für Kinder & Erwachsene, Kurse und kreative Events — herzlich, entspannt, ohne Leistungsdruck.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="de_AT" />
+
+    <!-- Google Fonts: Fraunces (Display-Serife) + Inter (Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+    <Navbar />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 200;
+        background: var(--ink);
+        color: var(--cream);
+        padding: 0.75rem 1.25rem;
+        border-radius: 0 0 var(--radius-sm) 0;
+      }
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
+  </body>
+</html>

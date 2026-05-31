@@ -1,0 +1,266 @@
+/* =========================================================================
+   Ton-kreativ — Globales Design-System
+   Dieses Stylesheet definiert die Design-Tokens (Farben, Typografie, Spacing)
+   und Basis-Stile, die für ALLE Seiten gelten. Neue Seiten erben dieses System.
+   ========================================================================= */
+
+/* ----------------------------- Schriften --------------------------------- */
+/* Geladen via <link> im BaseLayout (Google Fonts: Fraunces + Inter).        */
+
+/* ------------------------------ Tokens ----------------------------------- */
+:root {
+  /* Farbpalette — warme Naturtöne */
+  --cream: #faf6ef;          /* Hintergrund / Off-White */
+  --cream-2: #f4ede0;        /* abwechselnde Sektion */
+  --sand: #e9ddc9;           /* Beige / Sand */
+  --sand-soft: #efe7d8;      /* sanfter Sand für Karten */
+  --terracotta: #be6a4b;     /* Akzent */
+  --terracotta-dark: #a4583c;/* Hover / aktiver Zustand */
+  --ink: #26211c;            /* Text — Anthrazit/Schwarz */
+  --muted: #6f665c;          /* gedämpfter Text */
+  --line: #e2d8c6;           /* Trennlinien / Rahmen */
+  --white: #ffffff;
+
+  /* Schrift-Stacks */
+  --font-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing-Skala */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Layout */
+  --maxw: 1200px;
+  --maxw-narrow: 760px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+
+  /* Radius & Schatten */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(38, 33, 28, 0.06);
+  --shadow-md: 0 14px 40px rgba(38, 33, 28, 0.10);
+
+  /* Bewegung */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition: 0.25s var(--ease);
+
+  /* Header-Höhe (für sticky-Offsets) */
+  --header-h: 4.5rem;
+}
+
+/* ------------------------------- Reset ----------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------- Typografie ---------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.2;
+}
+
+p {
+  max-width: 68ch;
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* ---------------------------- Utilities ---------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: var(--maxw-narrow);
+}
+
+.section {
+  padding-block: clamp(3.5rem, 9vw, var(--space-3xl));
+}
+
+.section--sand {
+  background-color: var(--cream-2);
+}
+
+/* Kleines Label über Überschriften (Augenbraue) */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: var(--space-md);
+}
+
+.lead {
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center p {
+  margin-inline: auto;
+}
+
+/* ---------------------------- Buttons ------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition), color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background-color: var(--terracotta);
+  color: var(--white);
+}
+
+.btn--primary:hover {
+  background-color: var(--terracotta-dark);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.btn--ghost:hover {
+  background-color: var(--ink);
+  color: var(--cream);
+}
+
+/* ----------------------- Bilder mit Fallback ----------------------------- */
+/* Container behält Layout, auch wenn ein externes Bild nicht lädt.           */
+.media {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--sand);
+  border-radius: var(--radius-md);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sanfte Einblend-Animation beim Scrollen (degradiert ohne JS gnädig) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}

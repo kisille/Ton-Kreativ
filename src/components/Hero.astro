@@ -1,0 +1,92 @@
+---
+/**
+ * Hero — Willkommens-Sektion der Startseite mit großem Atmosphärenbild.
+ */
+import { IMG_BASE, site } from '../data/site';
+const heroImg = `${IMG_BASE}l1150497-2-standard.jpg`;
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <span class="eyebrow">Töpfer- &amp; Keramik-Atelier · Satteins</span>
+      <h1>Willkommen bei Ton-kreativ</h1>
+      <p class="lead">
+        Ich bin Jana — Mutter dreier Kids und der Mensch hinter Ton-Kreativ.
+        Bei mir darfst du in Ruhe gestalten, malen und töpfern. Ganz ohne
+        Leistungsdruck, dafür mit viel Herz.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/buche-malzeit">Malzeit buchen</a>
+        <a class="btn btn--ghost" href="/ueber-mich">Über mich</a>
+      </div>
+    </div>
+
+    <figure class="hero__media media">
+      <img
+        src={heroImg}
+        alt="Jana Gams in ihrem Töpfer- und Keramik-Atelier Ton-kreativ"
+        width="960"
+        height="1200"
+        fetchpriority="high"
+      />
+      <figcaption class="hero__credit">
+        Foto: {site.photographer}
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero__text {
+    max-width: 38rem;
+  }
+  .hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+
+  .hero__media {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  .hero__credit {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    background: color-mix(in srgb, var(--ink) 55%, transparent);
+    border-radius: 0 var(--radius-sm) 0 0;
+  }
+
+  @media (min-width: 880px) {
+    .hero__inner {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .hero__media {
+      aspect-ratio: 4 / 5;
+      max-width: 30rem;
+      margin-left: auto;
+    }
+  }
+</style>
