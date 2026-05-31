@@ -1,0 +1,302 @@
+---
+/**
+ * Nutzungspreise töpfern (Projekt-Brief §4).
+ * Textlastige Info-Seite mit Preisliste. Töpfern nur auf Anfrage (kein Widget).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Figure from '../components/Figure.astro';
+import { img, photos, site } from '../data/site';
+
+const priceGroups = [
+  {
+    title: 'Brände',
+    items: [
+      { label: 'Schrühbrand (950 °C)', price: '7 €/kg' },
+      { label: 'Glasurbrand inkl. Farben (ca. 1100 °C)', price: '10 €/kg' },
+    ],
+  },
+  {
+    title: 'Nutzung',
+    items: [
+      { label: 'Nutzungsgebühr beim Töpfern', price: '5 €/Std.' },
+      { label: 'Erster Tag', price: '15 €' },
+      { label: 'Satteinser Kinder', price: '3 €/Std.' },
+    ],
+  },
+  {
+    title: 'Getränke',
+    items: [
+      { label: 'Kaffee', price: '2,50 €' },
+      { label: 'Limo', price: '2,50 €' },
+    ],
+  },
+];
+
+const notes = [
+  'Mindestalter 10 Jahre — jüngere Kinder töpfern mit einer Begleitperson.',
+  'Bis 10 Jahre besteht Aufsichtspflicht der Eltern (eine Begleitperson).',
+  'Farben und Glasuren sind im Nutzungspreis enthalten.',
+  'Bitte saubere Schuhe mitbringen oder Überzieher leihen (1 €).',
+  'Ton ist ein Naturprodukt — beim Brand kann einmal etwas schiefgehen. Im Zweifel finden wir gemeinsam eine Lösung.',
+  'Töpfern ist aktuell nur auf Anfrage möglich (online sind nur Maltermine buchbar). Frag vorab, ob ein Platz frei ist.',
+];
+---
+
+<BaseLayout
+  title="Nutzungspreise töpfern — Ton-kreativ"
+  description="Töpfern im Atelier Ton-kreativ in Satteins: Handaufbau für alle ab 10 Jahren. Preise für Schrüh- und Glasurbrand, Nutzungsgebühr und alle Infos zur Abrechnung."
+>
+  <!-- Intro -->
+  <section class="section price-hero">
+    <div class="container price-hero__inner">
+      <div class="price-hero__text">
+        <span class="eyebrow">Selbst töpfern</span>
+        <h1>Nutzungspreise töpfern</h1>
+        <p class="lead">
+          Hier ist jede:r willkommen, die oder der sich kreativ entfalten möchte.
+          Wir arbeiten im Handaufbau — ganz ohne Drehscheibe. Töpfern ist aktuell
+          nur auf Anfrage möglich, melde dich also gerne vorab.
+        </p>
+        <a class="btn btn--primary" href={`mailto:${site.email}`}>Töpfern anfragen</a>
+      </div>
+      <Figure
+        src={img(photos.toepfern)}
+        alt="Hände beim Formen von Ton im Handaufbau"
+        ratio="4 / 5"
+        eager={true}
+        class="price-hero__figure"
+      />
+    </div>
+  </section>
+
+  <!-- Wer & Abrechnung -->
+  <section class="section section--sand">
+    <div class="container info-grid">
+      <article class="info">
+        <span class="eyebrow">Wer kann töpfern?</span>
+        <h2>Für alle ab 10 Jahren</h2>
+        <p>
+          Alle, die sich kreativ entfalten möchten, sind herzlich willkommen —
+          ab 10 Jahren, jüngere Kinder gerne mit einer Begleitperson. Bei uns
+          wird im Handaufbau getöpfert; Drehscheiben gibt es bewusst keine.
+        </p>
+      </article>
+      <article class="info">
+        <span class="eyebrow">Abrechnung</span>
+        <h2>Fair nach Verbrauch</h2>
+        <p>
+          Abgerechnet wird nach deinem Materialverbrauch zuzüglich einer kleinen
+          Nutzungsgebühr. Die Bezahlung erfolgt vor dem Schrühbrand.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Preise -->
+  <section class="section" id="preise">
+    <div class="container">
+      <header class="section-head text-center">
+        <span class="eyebrow">Preise</span>
+        <h2>Was das Töpfern kostet</h2>
+      </header>
+
+      <div class="price-grid">
+        {priceGroups.map((group) => (
+          <article class="price-card">
+            <h3 class="price-card__title">{group.title}</h3>
+            <table class="price-table">
+              <tbody>
+                {group.items.map((item) => (
+                  <tr>
+                    <th scope="row">{item.label}</th>
+                    <td>{item.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </article>
+        ))}
+      </div>
+
+      <p class="price-reduced">
+        <strong>Ermässigt:</strong> Satteinser Kinder, Pensionist:innen sowie
+        Menschen mit Beeinträchtigung.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gut zu wissen -->
+  <section class="section section--sand">
+    <div class="container container--narrow">
+      <header class="section-head">
+        <span class="eyebrow">Gut zu wissen</span>
+        <h2>Bevor du loslegst</h2>
+      </header>
+      <ul class="notes">
+        {notes.map((note) => <li>{note}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section price-cta">
+    <div class="container container--narrow text-center">
+      <h2>Lust, selbst Hand anzulegen?</h2>
+      <p class="lead">
+        Da Töpfern nur auf Anfrage möglich ist, schreib mir einfach kurz — ich
+        sage dir, wann ein Platz frei ist.
+      </p>
+      <div class="price-cta__actions">
+        <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="btn btn--ghost" href="/kontakt">Zum Kontakt</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-head {
+    max-width: 52rem;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .section-head.text-center {
+    margin-inline: auto;
+  }
+  .section-head h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Intro */
+  .price-hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .price-hero__text {
+    max-width: 38rem;
+  }
+  .price-hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+  .price-hero .btn {
+    margin-top: var(--space-xl);
+  }
+  @media (min-width: 880px) {
+    .price-hero__inner {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .price-hero__figure {
+      max-width: 28rem;
+      margin-left: auto;
+    }
+  }
+
+  /* Wer & Abrechnung */
+  .info-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+  @media (min-width: 760px) {
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .info h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: var(--space-md);
+  }
+  .info p {
+    color: var(--muted);
+  }
+
+  /* Preise */
+  .price-grid {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  @media (min-width: 760px) {
+    .price-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .price-card {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    border-top: 3px solid var(--terracotta);
+  }
+  .price-card__title {
+    margin-bottom: var(--space-md);
+    font-size: 1.3rem;
+  }
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .price-table th,
+  .price-table td {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .price-table tr:last-child th,
+  .price-table tr:last-child td {
+    border-bottom: 0;
+  }
+  .price-table th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--muted);
+    padding-right: 1rem;
+  }
+  .price-table td {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .price-reduced {
+    max-width: 100%;
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--sand-soft);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--muted);
+  }
+  .price-reduced strong {
+    color: var(--ink);
+  }
+
+  /* Gut zu wissen */
+  .notes {
+    display: grid;
+    gap: var(--space-md);
+  }
+  .notes li {
+    position: relative;
+    padding-left: 1.8rem;
+    color: var(--muted);
+  }
+  .notes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  /* CTA */
+  .price-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+</style>
