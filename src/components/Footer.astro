@@ -1,0 +1,137 @@
+---
+/**
+ * Footer — Kontaktangaben, Kurz-Navigation und Bildnachweis.
+ * Wird auf allen Seiten via BaseLayout eingebunden.
+ */
+import { navLinks, site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="/">Ton<span>-</span>kreativ</a>
+      <p class="footer-tag">
+        Töpfer- &amp; Keramik-Atelier von {site.owner} — herzlich, entspannt,
+        ohne Leistungsdruck.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer-Navigation">
+      <h2 class="footer-heading">Seiten</h2>
+      <ul>
+        {navLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <h2 class="footer-heading">Kontakt</h2>
+      <address>
+        {site.owner}<br />
+        {site.street}<br />
+        {site.city}, {site.country}<br />
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </address>
+      <p class="footer-meta">Kunsthandwerk · GISA {site.gisa}</p>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} {site.name} · {site.owner}</p>
+    <p class="footer-credit">
+      Fotos:
+      <a href={site.photographerUrl} target="_blank" rel="noopener noreferrer">
+        {site.photographer}
+      </a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding-block: var(--space-2xl) var(--space-lg);
+    margin-top: var(--space-3xl);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+  }
+  .footer-logo span {
+    color: var(--terracotta);
+  }
+  .footer-tag {
+    margin-top: var(--space-sm);
+    color: color-mix(in srgb, var(--cream) 72%, transparent);
+    max-width: 36ch;
+  }
+
+  .footer-heading {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: var(--space-md);
+  }
+
+  .footer-nav ul {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .footer-nav a,
+  .footer-contact a {
+    color: color-mix(in srgb, var(--cream) 82%, transparent);
+    transition: color var(--transition);
+  }
+  .footer-nav a:hover,
+  .footer-contact a:hover {
+    color: var(--cream);
+  }
+
+  .footer-contact address {
+    font-style: normal;
+    line-height: 1.8;
+    color: color-mix(in srgb, var(--cream) 82%, transparent);
+  }
+  .footer-meta {
+    margin-top: var(--space-md);
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--cream) 55%, transparent);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid color-mix(in srgb, var(--cream) 18%, transparent);
+    font-size: 0.85rem;
+    color: color-mix(in srgb, var(--cream) 60%, transparent);
+  }
+  .footer-credit a {
+    color: color-mix(in srgb, var(--cream) 80%, transparent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (min-width: 720px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: var(--space-2xl);
+    }
+  }
+</style>

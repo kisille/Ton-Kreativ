@@ -1,0 +1,231 @@
+---
+/**
+ * Navbar — sticky Kopfzeile mit Wortmarke und Navigation.
+ * Desktop: horizontale Links. Mobil: Hamburger öffnet ein Vollflächen-Menü.
+ */
+import { navLinks } from '../data/site';
+
+// Aktuellen Pfad für die "active"-Markierung ermitteln.
+const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="container nav-bar">
+    <a class="brand" href="/" aria-label="Ton-kreativ — Startseite">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">Ton<span>-</span>kreativ</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Menü öffnen"
+    >
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav id="primary-nav" class="nav" aria-label="Hauptnavigation">
+      <ul class="nav__list">
+        {
+          navLinks.map((link) => {
+            const href = link.href.replace(/\/+$/, '') || '/';
+            const isActive = href === current;
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={['nav__link', { 'is-active': isActive }]}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    min-height: var(--header-h);
+  }
+
+  /* Wortmarke */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .brand__mark {
+    width: 1.05rem;
+    height: 1.35rem;
+    background: var(--terracotta);
+    border-radius: 45% 45% 50% 50% / 60% 60% 40% 40%;
+    flex: none;
+  }
+  .brand__name span {
+    color: var(--terracotta);
+  }
+
+  /* Desktop-Navigation */
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1.6vw, 1.5rem);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .nav__link {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 0.35rem 0;
+    position: relative;
+    transition: color var(--transition);
+  }
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1.5px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+  }
+  .nav__link:hover,
+  .nav__link.is-active {
+    color: var(--terracotta);
+  }
+  .nav__link:hover::after,
+  .nav__link.is-active::after {
+    transform: scaleX(1);
+  }
+
+  /* Hamburger — auf Desktop versteckt */
+  .nav-toggle {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: var(--radius-sm);
+  }
+  .nav-toggle__bar {
+    display: block;
+    width: 1.4rem;
+    height: 2px;
+    background: var(--ink);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  /* --------- Mobil: Off-Canvas-Menü unter ~960px --------- */
+  @media (max-width: 960px) {
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .nav {
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      background: var(--cream);
+      transform: translateX(100%);
+      transition: transform 0.32s var(--ease);
+      overflow-y: auto;
+      padding: var(--space-xl) var(--gutter) var(--space-2xl);
+      visibility: hidden;
+    }
+    .nav__list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .nav__list li {
+      width: 100%;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav__link {
+      display: block;
+      width: 100%;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      font-family: var(--font-display);
+    }
+    .nav__link::after {
+      display: none;
+    }
+
+    /* Geöffneter Zustand (Klasse via JS auf <body>) */
+    :global(body.nav-open) .nav {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    :global(body.nav-open) {
+      overflow: hidden;
+    }
+    /* Hamburger -> X */
+    :global(body.nav-open) .nav-toggle__bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    :global(body.nav-open) .nav-toggle__bar:nth-child(2) {
+      opacity: 0;
+    }
+    :global(body.nav-open) .nav-toggle__bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  // Hamburger-Menü: Body-Klasse umschalten, ARIA pflegen, bei Navigation/ESC schließen.
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('primary-nav');
+
+  function setOpen(open: boolean) {
+    document.body.classList.toggle('nav-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(!document.body.classList.contains('nav-open'));
+  });
+
+  // Beim Klick auf einen Link schließen.
+  nav?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setOpen(false);
+  });
+
+  // ESC schließt das Menü.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+</script>

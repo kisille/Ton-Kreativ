@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ton-kreativ">
+  <rect width="64" height="64" rx="14" fill="#be6a4b"/>
+  <!-- Stilisierte Vase / Keramikgefäß -->
+  <path d="M26 14h12c0 3-2 4-2 6s3 3 5 7c3 5 4 10 4 15 0 8-6 13-13 13s-13-5-13-13c0-5 1-10 4-15 2-4 5-5 5-7s-2-3-2-6z"
+        fill="#faf6ef"/>
+  <ellipse cx="32" cy="42" rx="8" ry="9" fill="#be6a4b" opacity="0.18"/>
+</svg>

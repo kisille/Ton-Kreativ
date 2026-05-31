@@ -1,0 +1,93 @@
+---
+/**
+ * FaqItem — einzelnes Aufklapp-Element (natives <details>/<summary>),
+ * funktioniert auch ohne JavaScript.
+ */
+interface Props {
+  question: string;
+  open?: boolean;
+}
+const { question, open = false } = Astro.props;
+---
+
+<details class="faq" open={open}>
+  <summary class="faq__summary">
+    <span class="faq__q">{question}</span>
+    <span class="faq__icon" aria-hidden="true"></span>
+  </summary>
+  <div class="faq__answer">
+    <p><slot /></p>
+  </div>
+</details>
+
+<style>
+  .faq {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    color: var(--ink);
+    transition: color var(--transition);
+  }
+  .faq__summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq__summary:hover {
+    color: var(--terracotta);
+  }
+
+  /* Plus/Minus-Symbol */
+  .faq__icon {
+    position: relative;
+    flex: none;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .faq__icon::before,
+  .faq__icon::after {
+    content: '';
+    position: absolute;
+    inset: 50% 0;
+    height: 2px;
+    background: var(--terracotta);
+    transform: translateY(-50%);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+  .faq__icon::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+  .faq[open] .faq__icon::after {
+    opacity: 0;
+    transform: translateY(-50%) rotate(0deg);
+  }
+
+  .faq__answer {
+    padding-bottom: var(--space-lg);
+    color: var(--muted);
+  }
+  .faq__answer p {
+    margin: 0;
+    max-width: 70ch;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .faq[open] .faq__answer {
+      animation: faq-reveal 0.35s var(--ease);
+    }
+    @keyframes faq-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+    }
+  }
+</style>
