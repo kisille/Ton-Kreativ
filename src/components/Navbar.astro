@@ -41,7 +41,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
                   class:list={['nav__link', { 'is-active': isActive }]}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  {link.short ?? link.label}
+                  {link.label}
                 </a>
               </li>
             );
@@ -77,7 +77,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     align-items: center;
     gap: 0.6rem;
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     letter-spacing: -0.01em;
     color: var(--ink);
     flex: none;
@@ -101,16 +101,17 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
   .nav__list {
     display: flex;
     align-items: center;
-    gap: clamp(0.7rem, 1.4vw, 1.35rem);
+    gap: clamp(0.5rem, 0.7vw, 0.72rem);
     flex-wrap: nowrap;
     justify-content: flex-end;
   }
   .nav__link {
-    font-size: 0.92rem;
+    font-size: 0.76rem;
     font-weight: 500;
     color: var(--ink);
     padding: 0.35rem 0;
     position: relative;
+    white-space: nowrap;
     transition: color var(--transition);
   }
   .nav__link::after {
@@ -153,8 +154,8 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     transition: transform var(--transition), opacity var(--transition);
   }
 
-  /* --------- Mobil: Off-Canvas-Menü unter ~960px --------- */
-  @media (max-width: 960px) {
+  /* --------- Mobil: Off-Canvas-Menü unter 1240px --------- */
+  @media (max-width: 1240px) {
     /* Wichtig: backdrop-filter macht den Header zum containing block für
        fixed-Kinder und würde das Off-Canvas-Menü an der Headerleiste statt
        am Viewport ausrichten. Auf Mobil daher deaktivieren. */
@@ -170,13 +171,21 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
     .nav {
       position: fixed;
-      inset: var(--header-h) 0 0 0;
+      /* Volle Fläche abdecken (unter dem schwebenden Header), damit beim
+         Öffnen nirgends das Hintergrundbild durchscheint. */
+      inset: 0;
       background: var(--cream);
       z-index: 90;
       transform: translateX(100%);
-      transition: transform 0.32s var(--ease);
+      /* visibility erst NACH dem Slide ausblenden, sonst wirkt das
+         Schließen abrupt; transform bleibt GPU-beschleunigt. */
+      transition: transform 0.4s var(--ease), visibility 0s linear 0.4s;
+      will-change: transform;
       overflow-y: auto;
-      padding: var(--space-xl) var(--gutter) var(--space-2xl);
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      padding: calc(var(--header-h) + var(--space-lg)) var(--gutter)
+        var(--space-2xl);
       visibility: hidden;
     }
     .nav__list {
@@ -203,6 +212,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     :global(body.nav-open) .nav {
       transform: translateX(0);
       visibility: visible;
+      transition: transform 0.4s var(--ease), visibility 0s;
     }
     :global(body.nav-open) {
       overflow: hidden;

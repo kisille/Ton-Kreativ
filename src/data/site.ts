@@ -10,20 +10,18 @@
 export interface NavLink {
   label: string;
   href: string;
-  /** Kurzform für die Kopf-Navigation; fällt auf `label` zurück. */
-  short?: string;
 }
 
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
-  { label: 'Buche deine Malzeit', href: '/buche-malzeit', short: 'Malzeit buchen' },
-  { label: 'Events & Termine', href: '/events', short: 'Events' },
-  { label: 'Nutzungspreise töpfern', href: '/nutzungspreise', short: 'Preise' },
-  { label: 'Schwangerschaft & Erinnerungen', href: '/erinnerungen', short: 'Erinnerungen' },
+  { label: 'Buche deine Malzeit', href: '/buche-malzeit' },
+  { label: 'Events & Termine', href: '/events' },
+  { label: 'Nutzungspreise töpfern', href: '/nutzungspreise' },
+  { label: 'Schwangerschaft & Erinnerungen', href: '/erinnerungen' },
   { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Kontakt', href: '/kontakt' },
-  { label: 'Impressionen & Feedback', href: '/impressionen', short: 'Impressionen' },
-  { label: 'Impressum & AGB', href: '/impressum', short: 'Impressum' },
+  { label: 'Impressionen & Feedback', href: '/impressionen' },
+  { label: 'Impressum & AGB', href: '/impressum' },
 ];
 
 export const site = {
