@@ -68,6 +68,15 @@ export const photos = {
 /** Bildergalerien (Dateinamen, gleiche Quelle wie photos). */
 export const galleries = {
   malzeit: ['l1150258.jpg', 'l1150404-2.jpg', 'l1150318.jpg', 'l1150337-2.jpg'],
+  impressionen: [
+    '20260413_080202.jpg',
+    '20251018_093552.jpg',
+    '20250511_121516.jpg',
+    '20250710_103632.jpg',
+    '20250704_143342.jpg',
+    '20250704_143333.jpg',
+    '1773854795795.jpg',
+  ],
 } as const;
 
 /** Teburio-Buchungs-Widgets (siehe Projekt-Brief). */
