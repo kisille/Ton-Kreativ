@@ -1,0 +1,366 @@
+---
+/**
+ * Events & Termine (Projekt-Brief §3).
+ * Übersicht der buchbaren Events (Teburio-Widgets) plus Detail-Block
+ * zum Workshop "Gross und Klein zusammen".
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Figure from '../components/Figure.astro';
+import { img, photos, booking, site } from '../data/site';
+
+const events = [
+  {
+    title: 'Malplatz buchen',
+    image: img(photos.malzeit),
+    alt: 'Keramik und Farben zum Bemalen am Malplatz',
+    text: 'Reserviere deinen Platz zum Keramik-Bemalen — zwei Stunden kreative Auszeit, alle Brände und Farben inklusive.',
+    href: booking.malplatz,
+    cta: 'Malplatz buchen',
+    info: '/buche-malzeit',
+  },
+  {
+    title: 'After Work Painting',
+    image: img(photos.events),
+    alt: 'Gemütliche Runde beim Keramik-Bemalen am Abend',
+    text: 'Lass den Tag entspannt ausklingen und bemale Keramik in gemütlicher Runde — der perfekte Feierabend.',
+    href: booking.afterWork,
+    cta: 'Platz sichern',
+  },
+  {
+    title: 'Gross und Klein zusammen',
+    image: img(photos.grossKlein),
+    alt: 'Erwachsene und Kind gestalten gemeinsam aus Ton',
+    text: 'Gemeinsam töpfern und bemalen — ein besonderes Erlebnis für eine erwachsene Person mit einem Kind.',
+    href: booking.grossKlein,
+    cta: 'Workshop buchen',
+    info: '#gross-klein',
+  },
+];
+---
+
+<BaseLayout
+  title="Events & Termine — Ton-kreativ"
+  description="Aktuelle Events im Atelier Ton-kreativ: Malplatz buchen, After Work Painting und der Workshop 'Gross und Klein zusammen'. Jetzt online einbuchen."
+>
+  <!-- Intro -->
+  <section class="section ev-hero">
+    <div class="container ev-hero__inner">
+      <div class="ev-hero__text">
+        <span class="eyebrow">Events &amp; Termine</span>
+        <h1>Jetzt einbuchen</h1>
+        <p class="lead">
+          Hier findest du unsere Events, in die du dich ab sofort einbuchen
+          kannst. Such dir aus, worauf du Lust hast — und sichere dir deinen
+          Platz.
+        </p>
+      </div>
+      <Figure
+        src={img(photos.events)}
+        alt="Kreative Töpfer- und Mal-Veranstaltung im Atelier"
+        ratio="4 / 5"
+        eager={true}
+        class="ev-hero__figure"
+      />
+    </div>
+  </section>
+
+  <!-- Event-Übersicht -->
+  <section class="section section--sand" id="events">
+    <div class="container">
+      <header class="section-head text-center">
+        <span class="eyebrow">Buchbare Events</span>
+        <h2>Wähle dein Erlebnis</h2>
+      </header>
+
+      <div class="event-grid">
+        {events.map((ev) => (
+          <article class="event-card">
+            <div class="event-card__media media">
+              <img src={ev.image} alt={ev.alt} width="640" height="480" loading="lazy" decoding="async" />
+              <span class="event-card__credit">Foto: {site.photographer}</span>
+            </div>
+            <div class="event-card__body">
+              <h3>{ev.title}</h3>
+              <p>{ev.text}</p>
+              <div class="event-card__actions">
+                <a class="btn btn--primary" href={ev.href} target="_blank" rel="noopener noreferrer">
+                  {ev.cta}
+                </a>
+                {ev.info && (
+                  <a class="event-card__info" href={ev.info}>Mehr erfahren</a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gross und Klein zusammen — Detail -->
+  <section class="section" id="gross-klein">
+    <div class="container gk">
+      <div class="gk__media">
+        <Figure
+          src={img(photos.grossKlein)}
+          alt="Erwachsene Person und Kind töpfern gemeinsam"
+          ratio="4 / 5"
+        />
+      </div>
+      <div class="gk__text">
+        <span class="eyebrow">Workshop im Detail</span>
+        <h2>Gross und Klein zusammen</h2>
+        <p>
+          Verbringt gemeinsam wertvolle Zeit — ob Mama, Papa, Tante oder Opa,
+          zusammen mit einem Kind zwischen 3 und 10 Jahren.
+        </p>
+        <ol class="gk__steps">
+          <li>
+            <strong>Tag 1 — Töpfern:</strong> Gemeinsam gestaltet ihr euer
+            Werkstück aus Ton.
+          </li>
+          <li>
+            <strong>Bemalen:</strong> Nach dem ersten Brand bemalt ihr innerhalb
+            der Öffnungszeiten 2 Stunden lang euer Stück.
+          </li>
+          <li>
+            <strong>Fertigstellung:</strong> Danach wird klar glasiert — ca. 1–2
+            Wochen nach dem Bemalen ist alles abholbereit.
+          </li>
+        </ol>
+
+        <aside class="pricebox">
+          <h3 class="pricebox__title">Kosten gesamt — inkl. Brände &amp; Farben</h3>
+          <p class="pricebox__main"><span>95&nbsp;€</span></p>
+          <ul class="pricebox__list">
+            <li>1 Erwachsener + 1 Kind</li>
+            <li>1 Vormittag töpfern + 2 Std. bemalen</li>
+            <li>Gesamtzeit ca. 4 Stunden</li>
+          </ul>
+          <a class="btn btn--primary pricebox__btn" href={booking.grossKlein} target="_blank" rel="noopener noreferrer">
+            Workshop buchen
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section ev-cta">
+    <div class="container container--narrow text-center">
+      <h2>Noch Fragen zu einem Event?</h2>
+      <p class="lead">Schreib mir gerne — ich helfe dir bei der Auswahl weiter.</p>
+      <div class="ev-cta__actions">
+        <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="btn btn--ghost" href="/kontakt">Zum Kontakt</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-head {
+    max-width: 52rem;
+    margin-inline: auto;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .section-head h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Intro */
+  .ev-hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .ev-hero__text {
+    max-width: 38rem;
+  }
+  .ev-hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+  @media (min-width: 880px) {
+    .ev-hero__inner {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .ev-hero__figure {
+      max-width: 28rem;
+      margin-left: auto;
+    }
+  }
+
+  /* Event-Karten */
+  .event-grid {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+  @media (min-width: 720px) {
+    .event-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .event-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+  .event-card__media {
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+  }
+  .event-card__media img {
+    transition: transform 0.5s var(--ease);
+  }
+  .event-card:hover .event-card__media img {
+    transform: scale(1.04);
+  }
+  .event-card__credit {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    background: color-mix(in srgb, var(--ink) 55%, transparent);
+    border-radius: 0 var(--radius-sm) 0 0;
+  }
+  .event-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    flex: 1;
+  }
+  .event-card__body p {
+    color: var(--muted);
+    margin: 0;
+  }
+  .event-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: auto;
+    padding-top: var(--space-md);
+  }
+  .event-card__info {
+    font-weight: 600;
+    color: var(--terracotta);
+  }
+
+  /* Gross & Klein Detail */
+  .gk {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .gk__text {
+    max-width: 42rem;
+  }
+  .gk__text h2 {
+    margin-bottom: var(--space-md);
+  }
+  .gk__text > p {
+    color: var(--muted);
+  }
+  @media (min-width: 820px) {
+    .gk {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+    .gk__media {
+      max-width: 24rem;
+      position: sticky;
+      top: calc(var(--header-h) + 1rem);
+    }
+  }
+  .gk__steps {
+    display: grid;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+    counter-reset: step;
+  }
+  .gk__steps li {
+    position: relative;
+    padding-left: 2.6rem;
+    color: var(--muted);
+  }
+  .gk__steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: grid;
+    place-items: center;
+    background: var(--terracotta);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .gk__steps strong {
+    color: var(--ink);
+  }
+
+  /* Preis-Box (geteilt mit Erinnerungen-Seite, hier lokal) */
+  .pricebox {
+    background: var(--sand-soft);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--terracotta);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    margin-top: var(--space-xl);
+  }
+  .pricebox__title {
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--space-sm);
+  }
+  .pricebox__main {
+    font-family: var(--font-display);
+    margin-bottom: var(--space-md);
+  }
+  .pricebox__main span {
+    font-size: clamp(2.5rem, 6vw, 3.25rem);
+    color: var(--ink);
+    line-height: 1;
+  }
+  .pricebox__list {
+    display: grid;
+    gap: 0.6rem;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line);
+  }
+  .pricebox__list li {
+    color: var(--muted);
+  }
+  .pricebox__btn {
+    margin-top: var(--space-lg);
+    width: 100%;
+  }
+
+  /* CTA */
+  .ev-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+</style>

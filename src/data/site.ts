@@ -61,6 +61,8 @@ export const photos = {
   malzeit: 'l1150269.jpg',
   toepfern: '20260312_135702.jpg',
   schwangerschaft: '1779553705384.jpg',
+  events: 'l1150366.jpg',
+  grossKlein: '20260319_162210.jpg',
 } as const;
 
 /** Bildergalerien (Dateinamen, gleiche Quelle wie photos). */
