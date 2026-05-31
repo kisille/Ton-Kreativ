@@ -182,20 +182,19 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       top: 0;
       left: 0;
       right: 0;
-      /* Exakte Höhe = aktuelle sichtbare Viewport-Höhe. Das Nachblenden unten
-         kommt NICHT von dvh selbst, sondern davon, dass das Öffnen die
-         iOS-URL-Leiste umschaltet (siehe Scroll-Lock unten). Wird das
-         verhindert, bleibt dvh konstant und deckt exakt: kein Überstand hinter
-         der Bar (kein "Hängenbleiben"), keine Lücke. */
+      /* Großer, durchgehend beiger Layer: reicht über den sichtbaren Bereich
+         hinaus nach unten, damit die untere Safari-URL-Leiste immer auf Beige
+         trifft und ohne Haken darauf umstellt. */
       height: 100vh; /* Fallback */
-      height: 100dvh;
+      height: 100lvh; /* große Viewport-Höhe */
+      min-height: 100lvh;
       background: var(--cream);
       z-index: 90;
-      transform: translateX(100%);
-      /* visibility erst NACH dem Slide ausblenden, sonst wirkt das
-         Schließen abrupt; transform bleibt GPU-beschleunigt. */
-      transition: transform 0.4s var(--ease), visibility 0s linear 0.4s;
-      will-change: transform;
+      /* Sanftes Einblenden des GESAMTEN Layers (Opacity) statt Slide von
+         rechts – kein Versatz zwischen oberem und unterem Bereich. */
+      opacity: 0;
+      transition: opacity 0.3s var(--ease), visibility 0s linear 0.3s;
+      will-change: opacity;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
@@ -229,9 +228,9 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
     /* Geöffneter Zustand (Klasse via JS auf <body>) */
     :global(body.nav-open) .nav {
-      transform: translateX(0);
+      opacity: 1;
       visibility: visible;
-      transition: transform 0.4s var(--ease), visibility 0s;
+      transition: opacity 0.3s var(--ease);
     }
     /* Scroll-Lock OHNE overflow:hidden. overflow:hidden zwingt iOS-Safari, die
        URL-Leiste umzuschalten – genau das animiert die Viewport-Höhe und lässt
@@ -282,7 +281,13 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     } else {
       document.body.classList.remove('nav-open');
       document.body.style.top = '';
+      // Scroll-Position SOFORT (ohne smooth) wiederherstellen – sonst scrollt
+      // die Seite beim Schließen sichtbar von oben zurück zum Ausgangspunkt.
+      const html = document.documentElement;
+      const prevBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
       window.scrollTo(0, scrollY);
+      html.style.scrollBehavior = prevBehavior;
     }
     toggle?.setAttribute('aria-expanded', String(open));
     toggle?.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
