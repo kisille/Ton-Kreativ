@@ -190,11 +190,12 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       height: 100dvh;
       background: var(--cream);
       z-index: 90;
-      /* Sanftes Einblenden des GESAMTEN Layers (Opacity) statt Slide von
-         rechts – kein Versatz zwischen oberem und unterem Bereich. */
+      /* Geschlossen: SOFORT ausblenden. Ein animiertes Fade-out lässt iOS den
+         Bereich hinter der schwebenden URL-Leiste verzögert neu zeichnen → der
+         beige Streifen unten "hängt" 0,2–0,5 s nach. Instant-Close vermeidet
+         das. Das Einblenden wird im .nav-open-Block sanft animiert. */
       opacity: 0;
-      transition: opacity 0.3s var(--ease), visibility 0s linear 0.3s;
-      will-change: opacity;
+      transition: opacity 0s, visibility 0s;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
