@@ -182,12 +182,14 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       top: 0;
       left: 0;
       right: 0;
-      /* iOS Safari: 100vh (bzw. inset/bottom:0) rechnet die ein- und
-         ausblendende Toolbar nicht mit ein und lässt unten eine Lücke.
-         dvh folgt der dynamischen Viewport-Höhe und schließt die Lücke. */
-      height: 100vh; /* Fallback für ältere Browser */
-      height: -webkit-fill-available; /* iOS Safari < 15.4 */
-      height: 100dvh; /* dynamische Viewport-Höhe */
+      /* Großes, STABILES Overlay statt dvh: dvh wird beim Ein-/Ausblenden
+         der iOS-Safari-Toolbar verzögert neu berechnet → der untere
+         (beige) Bereich blendet nach = hakender Effekt. lvh bleibt konstant
+         und reicht hinter die transparente Toolbar, die iOS selbst anpasst. */
+      height: 100vh; /* Fallback (auf iOS = große Viewport-Höhe) */
+      height: 100lvh; /* große, stabile Viewport-Höhe */
+      min-height: 100vh;
+      min-height: 100lvh;
       background: var(--cream);
       z-index: 90;
       transform: translateX(100%);
