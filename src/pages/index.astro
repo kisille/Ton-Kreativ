@@ -8,7 +8,7 @@ import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqItem from '../components/FaqItem.astro';
 import ContactTeaser from '../components/ContactTeaser.astro';
-import { IMG_BASE } from '../data/site';
+import { img, photos } from '../data/site';
 ---
 
 <BaseLayout>
@@ -30,7 +30,7 @@ import { IMG_BASE } from '../data/site';
       <div class="card-grid">
         <ServiceCard
           title="Töpfern für Kinder"
-          image={`${IMG_BASE}l1150349-2.jpg`}
+          image={img(photos.kinderToepfern)}
           alt="Kinder formen und gestalten Ton im Atelier"
           href="/buche-malzeit"
           cta="Termin anfragen"
@@ -42,7 +42,7 @@ import { IMG_BASE } from '../data/site';
 
         <ServiceCard
           title="Verschiedene Veranstaltungen"
-          image={`${IMG_BASE}videocapture_20260522-121731.jpg`}
+          image={img(photos.veranstaltungen)}
           alt="Gruppe bei einer kreativen Töpfer-Veranstaltung"
           href="/events"
           cta="Termine ansehen"

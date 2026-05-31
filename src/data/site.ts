@@ -36,6 +36,26 @@ export const site = {
   photographerUrl: 'https://www.guntramfechtig.com',
 };
 
-/** Basis-URL der (vorerst wiederverwendeten) Bilder von der alten Seite. */
+/** Basis-URL der (vorerst wiederverwendeten) Bilder von der aktuellen Seite. */
 export const IMG_BASE =
   'https://primary.jwwb.nl/public/u/v/v/temp-slexemfinehrltjvtwst/';
+
+/**
+ * Hilfsfunktion: vollständige Bild-URL aus einem Dateinamen.
+ * Quelle ist aktuell die bestehende ton-kreativ.at-Seite. Sobald Original-
+ * dateien (volle Auflösung) im Projekt liegen, muss nur diese Funktion bzw.
+ * IMG_BASE angepasst werden — alle Aufrufstellen bleiben unverändert.
+ */
+export const img = (file: string): string => `${IMG_BASE}${file}`;
+
+/**
+ * Benannte Fotos der aktuellen Seite (alle von Guntram Fechtig).
+ * An EINER Stelle gepflegt, damit sie projektweit wiederverwendbar sind.
+ */
+export const photos = {
+  janaPortrait: 'l1150497-2-standard.jpg',
+  ueberMich1: 'l1150468-2.jpg',
+  ueberMich2: 'l1150477.jpg',
+  kinderToepfern: 'l1150349-2.jpg',
+  veranstaltungen: 'videocapture_20260522-121731.jpg',
+} as const;

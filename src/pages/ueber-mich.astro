@@ -1,0 +1,268 @@
+---
+/**
+ * Über mich — Janas Geschichte (Projekt-Brief §6).
+ * Bild-lastige, editoriale Seite. Alle Fotos von Guntram Fechtig (Nachweis via Figure).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Figure from '../components/Figure.astro';
+import { img, photos, site } from '../data/site';
+---
+
+<BaseLayout
+  title="Über mich — Jana Gams · Ton-kreativ"
+  description="Jana Gams über ihre Reise zur Keramik, ihre Arbeitsweise und ihre Vision: Spass am Gestalten mit Ton weitergeben — entspannt, individuell, ohne Leistungsdruck."
+>
+  <!-- Intro -->
+  <section class="section about-hero">
+    <div class="container about-hero__inner">
+      <div class="about-hero__text">
+        <span class="eyebrow">Über mich</span>
+        <h1>Hallo, ich bin Jana</h1>
+        <p class="lead">
+          Mutter dreier Kinder, gelernt im Fachabitur für Kunst und Gestaltung —
+          und der Mensch hinter Ton-Kreativ. Töpfern ist für mich Entspannung
+          und Ausgleich, den ich gerne mit dir teile.
+        </p>
+      </div>
+      <Figure
+        src={img(photos.ueberMich1)}
+        alt="Jana Gams in ihrem Keramik-Atelier"
+        ratio="4 / 5"
+        eager={true}
+        class="about-hero__figure"
+      />
+    </div>
+  </section>
+
+  <!-- Meine Reise zur Keramik -->
+  <section class="section section--sand">
+    <div class="container split">
+      <div class="split__media">
+        <Figure
+          src={img(photos.ueberMich2)}
+          alt="Hände formen Ton an der Werkbank"
+          ratio="4 / 5"
+        />
+      </div>
+      <div class="split__text">
+        <span class="eyebrow">Meine Reise zur Keramik</span>
+        <h2>Vom ersten Stück Ton zum eigenen Atelier</h2>
+        <p>
+          Als Mutter von drei Kindern weiss ich, wie kostbar ruhige Momente sind.
+          Im Fachabitur für Kunst und Gestaltung habe ich das Drehen an der
+          Scheibe und den Handaufbau gelernt — und schnell gemerkt, dass mir das
+          Arbeiten mit Ton Ruhe und Ausgleich schenkt.
+        </p>
+        <p>
+          Aus einer Idee und viel Leidenschaft wurde mehr: Ich kaufte meine eigene
+          Töpferscheibe, und auch meine Kinder gestalten heute fleissig mit. So
+          entstand der Wunsch, diesen Raum für Kreativität mit anderen zu teilen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arbeitsweise / Zitat -->
+  <section class="section quote-section">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow">Meine Arbeitsweise</span>
+      <blockquote class="quote">
+        „Es muss nichts perfekt sein, um schön zu sein.“
+      </blockquote>
+      <p class="lead">
+        Bei mir stehen Ruhe und Individualität im Mittelpunkt. Ich gestalte eine
+        entspannte Atmosphäre, in der jede:r die eigene Kreativität entdecken
+        darf — ganz ohne Leistungsdruck.
+      </p>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="section section--sand">
+    <div class="container split split--reverse">
+      <div class="split__media">
+        <Figure
+          src={img(photos.janaPortrait)}
+          alt="Jana Gams im Atelier Ton-kreativ"
+          ratio="4 / 5"
+        />
+      </div>
+      <div class="split__text">
+        <span class="eyebrow">Meine Vision</span>
+        <h2>Begeisterung für das Gestalten weitergeben</h2>
+        <p>
+          Mein grösster Wunsch ist es, den Spass am Gestalten mit Ton
+          weiterzugeben und möglichst viele Menschen dafür zu begeistern. Ob
+          Kind oder Erwachsene:r, ob zum ersten Mal oder mit Erfahrung — bei mir
+          ist jede:r willkommen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story / Persönliches -->
+  <section class="section">
+    <div class="container container--narrow">
+      <span class="eyebrow">Meine Geschichte</span>
+      <h2>Ein bisschen mehr über mich</h2>
+      <p>
+        Mein bislang grösstes Projekt war im Januar 2026: Ich habe die Räume
+        eines sehr alten Hauses renoviert — mit viel Herzblut, um daraus einen
+        Ort zum Gestalten zu machen. Wenn ich nicht im Atelier bin, findet man
+        mich gerne draussen in der Natur.
+      </p>
+      <ul class="hobbies">
+        <li>Mountainbiken</li>
+        <li>Gleitschirmfliegen</li>
+        <li>Wandern</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Fotonachweis prominent -->
+  <section class="section">
+    <div class="container">
+      <aside class="credit-banner">
+        <span class="credit-banner__cam" aria-hidden="true">◎</span>
+        <p>
+          Alle Fotografien auf dieser Seite stammen von
+          <a href={site.photographerUrl} target="_blank" rel="noopener noreferrer">
+            {site.photographer}</a>. Herzlichen Dank für die wunderschönen
+          Eindrücke aus dem Atelier.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section about-cta">
+    <div class="container container--narrow text-center">
+      <h2>Lust, selbst kreativ zu werden?</h2>
+      <p class="lead">Ich freue mich darauf, dich im Atelier begrüssen zu dürfen.</p>
+      <div class="about-cta__actions">
+        <a class="btn btn--primary" href="/buche-malzeit">Malzeit buchen</a>
+        <a class="btn btn--ghost" href="/kontakt">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Intro */
+  .about-hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .about-hero__text {
+    max-width: 38rem;
+  }
+  .about-hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+  @media (min-width: 880px) {
+    .about-hero__inner {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .about-hero__figure {
+      max-width: 28rem;
+      margin-left: auto;
+    }
+  }
+
+  /* Zwei-Spalten-Block (Text + Bild) */
+  .split {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .split__text {
+    max-width: 40rem;
+  }
+  .split__text h2 {
+    margin-bottom: var(--space-md);
+  }
+  .split__text p + p {
+    margin-top: var(--space-md);
+  }
+  @media (min-width: 820px) {
+    .split {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+    .split__media {
+      max-width: 26rem;
+    }
+    /* Bild rechts statt links */
+    .split--reverse .split__media {
+      order: 2;
+      margin-left: auto;
+    }
+  }
+
+  /* Zitat */
+  .quote-section {
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+  }
+  .quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    line-height: 1.2;
+    color: var(--ink);
+    margin: var(--space-md) auto var(--space-lg);
+    max-width: 18ch;
+  }
+
+  /* Hobbys */
+  .hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: var(--space-lg);
+  }
+  .hobbies li {
+    padding: 0.5rem 1.1rem;
+    background: var(--sand-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* Fotonachweis-Banner */
+  .credit-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius-lg);
+  }
+  .credit-banner__cam {
+    color: var(--terracotta);
+    font-size: 1.6rem;
+    line-height: 1;
+    flex: none;
+  }
+  .credit-banner p {
+    margin: 0;
+    max-width: 60ch;
+    color: color-mix(in srgb, var(--cream) 85%, transparent);
+  }
+  .credit-banner a {
+    color: var(--cream);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--terracotta);
+  }
+
+  /* CTA */
+  .about-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+</style>

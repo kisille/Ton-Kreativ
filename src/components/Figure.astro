@@ -1,0 +1,101 @@
+---
+/**
+ * Figure — wiederverwendbares Bild mit gut sichtbarem Fotonachweis.
+ * Standard-Credit: Guntram Fechtig (mit Link auf sein Portfolio).
+ * Auf allen Seiten einsetzbar, damit die Bildrechte konsistent ausgewiesen sind.
+ */
+import { site } from '../data/site';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  /** Seitenverhältnis als CSS-Wert, z.B. "4 / 5". */
+  ratio?: string;
+  /** Fotonachweis; Default = Guntram Fechtig. */
+  credit?: string;
+  creditUrl?: string;
+  /** Lade-Priorität für das wichtigste Bild oben. */
+  eager?: boolean;
+  /** Zusätzliche Klassen. */
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width = 1200,
+  height = 1500,
+  ratio = '4 / 5',
+  credit = site.photographer,
+  creditUrl = site.photographerUrl,
+  eager = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<figure class:list={['figure', className]} style={`--ratio: ${ratio}`}>
+  <div class="figure__media media">
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      decoding="async"
+    />
+  </div>
+  <figcaption class="figure__credit">
+    <span class="figure__cam" aria-hidden="true">◎</span>
+    Foto:&nbsp;
+    {
+      creditUrl ? (
+        <a href={creditUrl} target="_blank" rel="noopener noreferrer">{credit}</a>
+      ) : (
+        <span>{credit}</span>
+      )
+    }
+  </figcaption>
+</figure>
+
+<style>
+  .figure {
+    margin: 0;
+  }
+
+  .figure__media {
+    aspect-ratio: var(--ratio, 4 / 5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Gut sichtbarer, aber dezenter Nachweis als Badge unten links */
+  .figure__credit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .figure__cam {
+    color: var(--terracotta);
+    font-size: 0.9rem;
+    line-height: 1;
+  }
+  .figure__credit a {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--terracotta);
+    transition: color var(--transition);
+  }
+  .figure__credit a:hover {
+    color: var(--terracotta);
+  }
+</style>
