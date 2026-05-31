@@ -41,7 +41,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
                   class:list={['nav__link', { 'is-active': isActive }]}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  {link.label}
+                  {link.short ?? link.label}
                 </a>
               </li>
             );
@@ -58,6 +58,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     top: 0;
     z-index: 100;
     background-color: color-mix(in srgb, var(--cream) 88%, transparent);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
     backdrop-filter: saturate(140%) blur(8px);
     border-bottom: 1px solid var(--line);
   }
@@ -79,6 +80,11 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     font-size: 1.4rem;
     letter-spacing: -0.01em;
     color: var(--ink);
+    flex: none;
+    white-space: nowrap;
+  }
+  .brand__name {
+    white-space: nowrap;
   }
   .brand__mark {
     width: 1.05rem;
@@ -95,8 +101,8 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
   .nav__list {
     display: flex;
     align-items: center;
-    gap: clamp(0.75rem, 1.6vw, 1.5rem);
-    flex-wrap: wrap;
+    gap: clamp(0.7rem, 1.4vw, 1.35rem);
+    flex-wrap: nowrap;
     justify-content: flex-end;
   }
   .nav__link {
@@ -149,6 +155,15 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
   /* --------- Mobil: Off-Canvas-Menü unter ~960px --------- */
   @media (max-width: 960px) {
+    /* Wichtig: backdrop-filter macht den Header zum containing block für
+       fixed-Kinder und würde das Off-Canvas-Menü an der Headerleiste statt
+       am Viewport ausrichten. Auf Mobil daher deaktivieren. */
+    .site-header {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background-color: var(--cream);
+    }
+
     .nav-toggle {
       display: inline-flex;
     }
@@ -157,6 +172,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       position: fixed;
       inset: var(--header-h) 0 0 0;
       background: var(--cream);
+      z-index: 90;
       transform: translateX(100%);
       transition: transform 0.32s var(--ease);
       overflow-y: auto;
