@@ -1,0 +1,203 @@
+# Projekt-Brief: Neubau Website “Ton-kreativ”
+
+## Ziel
+
+Neubau der bestehenden Website <https://www.ton-kreativ.at> mit gleichen Inhalten,
+aber komplett neuem, hochwertigem Design. Aktuell läuft die Seite über den Baukasten
+Webador und soll durch eine eigenständige, moderne Seite ersetzt werden.
+
+## Über das Atelier
+
+Töpfer- und Keramik-Atelier “Ton Kreativ” von Jana Gams (Mutter von drei Kindern,
+Fachabitur in Kunst und Gestaltung). Standort: Kirchplatz 3, 6822 Satteins (Vorarlberg, AT).
+Angebote: Malzeit/Keramik bemalen, Töpfern für Kinder und Erwachsene, Kurse, kreative
+Events, Babybauch-/Baby-Erinnerungsstücke. Ton (persönlich, herzlich, entspannt, kein
+Leistungsdruck). Buchungen laufen über externe Teburio-Widgets.
+
+## Kontakt & Eckdaten
+
+- Inhaberin: Jana Gams
+- Adresse: Kirchplatz 3, 6822 Satteins, Österreich
+- E-Mail: [tonkreativ@gmx.at](mailto:tonkreativ@gmx.at)
+- Gewerbe: Kunsthandwerk (GISA-Zahl 35653110), Mitglied WK Vorarlberg
+- Buchungs-Widgets (Teburio):
+  - Malplatz buchen: <https://app.teburio.de/widget/Res7oGqehPGrRv4eE>
+  - After Work Painting: <https://app.teburio.de/widget/e/K66dPL4szeto9btFy>
+  - Gross & Klein zusammen: <https://app.teburio.de/widget/e/hP9AmScED3dTzsnLy>
+- Fotonachweis: Guntram Fechtig ([www.guntramfechtig.com](http://www.guntramfechtig.com)) — bei Bildern nennen.
+
+## Design-Richtung
+
+Stil-Vorbilder: minimalistische Pottery/Keramik-Designs (Dribbble: “GELAB”, “Kettle”,
+“Artisanal & Handcrafted Essential Goods”).
+
+- **Farben:** warme Naturtöne — Creme/Off-White als Hintergrund, Beige/Sand, Terrakotta
+  als Akzent, tiefes Schwarz/Anthrazit für Text.
+- **Typografie:** elegante Serifen-Display-Schrift für grosse Überschriften, schlichte
+  Sans-Serif für Fliesstext.
+- **Layout:** viel Weissraum, grosse Atmosphäre-/Produktbilder, ruhig, edel.
+- **Bilder:** professionelle Fotos prominent einsetzen (Bildnachweis Guntram Fechtig).
+- Voll responsiv (Handy zuerst), schnelle Ladezeiten, sauberes Mobil-Menü (Hamburger).
+
+## Navigation (auf allen Seiten)
+
+Home · Buche deine Malzeit · Events/Termine · Nutzungspreise töpfern ·
+Schwangerschaft und Erinnerungen · Über mich · Kontakt · Impressionen und Feedback ·
+Impressum und AGB
+
+-----
+
+# Seiteninhalte
+
+## 1. Home
+
+- **Hero/Willkommen:** “Willkommen bei Ton-kreativ.at — Ich bin Jana, Mutter dreier Kids
+  und stecke hinter Ton-Kreativ.”
+- Hinweis auf Fotograf Guntram Fechtig ([www.guntramfechtig.com](http://www.guntramfechtig.com)).
+- **Dienstleistungen (Karten):**
+  - *Töpfern für Kinder:* Ab 6 Jahren herzlich willkommen. Egal ob einzigartige Becher,
+    lustige Tiere oder einfach Spass am Formen — kein Druck, dass etwas perfekt werden muss.
+  - *Verschiedene Veranstaltungen:* Freundinnen-Abend, Töpferkurse, Männerabend (auch
+    Männer können töpfern), Kindergeburtstag. Termine auf der Seite einsehbar.
+- **FAQ (Aufklapp-Elemente):**
+  - *Wie lange bis mein Kunstwerk abholbereit ist?* Je nach Komplexität 4–5 Wochen.
+    Es wird 2× gebrannt und auf Wunsch glasiert.
+  - *Können Tonfiguren individuell gestaltet werden?* Ja, freie Entfaltung.
+  - *Bieten Sie Workshops/Kurse an?* Ja — nachfragen oder hier nachsehen. Ab 4 Personen
+    auch Terminwünsche möglich.
+- **Kontakt-Teaser:** kurzer Text + Verweis auf Kontaktformular.
+
+## 2. Buche deine Malzeit
+
+- Button/Widget: Malzeit buchen (Teburio-Link oben).
+- **Öffnungszeiten:** Do 14–18:30 · Fr 14–21:00 · Sa 9:30–18:30. Gruppen gern nach Vereinbarung.
+- **Urlaub/geschlossen:** 05.06 geschlossen · 16.7–20.7 · 24.8–27.8.
+- **Ablauf Buchung:** Zum Buchen Kredit-/Debitkarte hinterlegen. Geld wird NICHT abgebucht,
+  nur geblockt (Schutz bei No-Show/zu später Stornierung); nach Eintragung wieder freigegeben
+  (3–5 Tage). Bezahlung bequem vor Ort.
+- 2 Std. Zeit zum Malen. In den Keramikkosten ist alles enthalten: Brände, Farben und
+  abschliessende Arbeit (klar glasieren, Stellrand säubern).
+- Ab 8 Personen bitte Anfrage per Mail.
+- **Stornierung:** kostenlos bis 2 Tage vorher (Stornolink in Bestätigungsmail). Bei
+  kurzfristiger Absage/Nichterscheinen Mindestumsatz pro Platz; Ersatzperson möglich.
+- **Kindergarten/Schule:** Termine ausserhalb der Öffnungszeiten ab 12 Kindern.
+- **JGA (Junggesellinnenabschied):** z. B. Frühstücksgeschirr fürs Brautpaar bemalen.
+  Einfache Maltechniken, jeder kann mitmachen. Ab 6 Personen, auch ausserhalb der
+  Öffnungszeiten. Sekt/Getränke erwerbbar.
+- **Feiern mit Kolleg:innen / privat:** per Mail Termin auch ausserhalb der Öffnungszeiten.
+
+## 3. Events / Termine
+
+- “Hier findet ihr Events, wo ihr euch ab sofort einbuchen könnt.” Buchungs-Widgets:
+  Malplatz · After Work Painting · Gross und Klein zusammen.
+- **Gross und Klein zusammen (Workshop):** Gemeinsam Zeit verbringen — Mama, Papa, Tante,
+  Opa + ein Kind (3–10 Jahre). Tag 1: gemeinsam aus Ton gestalten. Nach dem ersten Brand
+  innerhalb der Öffnungszeiten 2 Std. bemalen, dann klar glasiert, ca. 1–2 Wochen nach dem
+  Bemalen abholbereit. **Kosten gesamt inkl. Brände & Farben: 1 Erwachsener + 1 Kind,
+  1 Vormittag töpfern + 2 Std. bemalen = 95 €, Gesamtzeit ca. 4 Std.**
+
+## 4. Nutzungspreise töpfern
+
+- **Wer:** alle, die sich kreativ entfalten möchten; mind. 10 Jahre, sonst mit Begleitperson.
+  Töpfern aktuell nur auf Anfrage (Mail/Anruf). Keine Drehscheiben — Handaufbau.
+- **Abrechnung:** nach Materialverbrauch + kleine Nutzungsgebühr. Bezahlung vor dem Schrühbrand.
+- **Preise:**
+  - Schrühbrand: 7 €/kg (950 °C)
+  - Glasurbrand: 10 €/kg inkl. Farben (ca. 1100 °C)
+  - Nutzung: 5 €/Std. (beim Töpfern) · 15 € für den ersten Tag
+  - Kaffee 2,50 € · Limo 2,50 €
+  - Satteinser Kinder: 3 €/Std. Nutzung
+  - Ermässigt: Satteinser Kinder, Pensionist:innen, Menschen mit Beeinträchtigung
+- Bis 10 Jahre Aufsichtspflicht der Eltern (1 Begleitperson). Farben/Glasuren im Nutzungspreis.
+- Saubere Schuhe mitbringen oder Überzieher leihen (1 €).
+- Hinweis: Ton ist Naturprodukt — beim Brand kann etwas schiefgehen; im Zweifel findet sich
+  eine Lösung. Vorab anfragen, ob Platz frei ist (online nur Maltermine buchbar).
+
+## 5. Schwangerschaft und Erinnerungen
+
+- **Babybauchschale:** schöne Erinnerung, später frei gestaltbar. Termine auch ausserhalb
+  der Öffnungszeiten für Ruhe & Privatsphäre. **Kosten 80 € inkl. beider Brände und Zeit.**
+  Farbig gestalten +25 €; alternativ später Babyfüsse in die Schale.
+- **Babyfuss auf Keramik:** Füsschen-Abdrücke auf Teller, Tassen, Schüsseln, Dosen, Vasen.
+  Alltagstauglich nach Glasur/Brand; schöne Geschenkidee für die ganze Familie.
+- Jeweils: “Schreib mir gerne eine Anfrage.”
+
+## 6. Über mich
+
+- **Meine Reise zur Keramik:** Mutter von drei Kindern; Fachabitur in Kunst und Gestaltung;
+  Töpfern als Entspannung und Ausgleich. Auch die Kinder gestalten fleissig.
+- **Meine Arbeitsweise:** Ruhe und Individualität. “Es muss nichts perfekt sein, um schön
+  zu sein.” Entspannte Atmosphäre, in der jeder die eigene Kreativität entdeckt.
+- **Vision:** Spass am Gestalten mit Ton weitergeben und viele Menschen dafür begeistern.
+- **Über mich (Story):** Begann mit einer Idee und Leidenschaft; in Schule/Fachabitur das
+  Drehen an der Scheibe und Handaufbau gelernt; eigene Töpferscheibe gekauft. Grösstes
+  Projekt Januar 2026: Räume eines sehr alten Hauses renoviert. Hobbys: Mountainbiken,
+  Gleitschirmfliegen, Wandern.
+
+## 7. Kontakt
+
+- Text: “Für Fragen oder Terminvereinbarungen kannst du mich gerne über das Kontaktformular
+  erreichen. Ich freue mich darauf, von dir zu hören!”
+- **Formular:** Name*, E-Mail-Adresse*, Nachricht* + Absenden. (Honeypot-Feld gegen Spam.)
+- Sinnvolle Ergänzung: E-Mail [tonkreativ@gmx.at](mailto:tonkreativ@gmx.at) und Adresse direkt anzeigen.
+
+## 8. Impressionen und Feedback
+
+- **Bewertungen/Sterne** + Kommentarfunktion (Name*, E-Mail*, Nachricht*).
+- **Kundenstimmen (Auszug):**
+  - *Claudia Hartl:* gelungener Teamausflug, viel Spass, sympathische & geduldige Leitung,
+    angenehme Atmosphäre, sehr empfehlenswert.
+  - *Nadine:* wunderschöner Abend zu viert ohne Vorerfahrung; toll unterstützt, kreativ,
+    meditativ und entspannend; fühlt sich wie zuhause; “kommen auf jeden Fall wieder”.
+  - *Lotta:* “Super!”
+- **Einblicke/Galerie:** Gauki (Ferienprogramm), Töpfern mit Kindern & Erwachsenen.
+  - *Kindergeburtstag:* bis 6 Personen, Muffins erlaubt, Kuchenpause, Überraschung fürs
+    Geburtstagskind.
+  - *Weihnachtswerkstatt für Kinder:* Crêpes & Kinderpunsch; Teller, Schneemänner,
+    Baumschmuck, Engel — anschliessend bemalt.
+  - *Wir töpfern einen Becher:* gross & klein kreativ, jeder nimmt seinen Becher mit.
+  - “Unsere neuesten Arbeiten” — Galerie der Werke.
+
+## 9. Impressum und AGB
+
+- **Impressum:** Jana Gams, Kirchplatz 3, 6822 Satteins. E-Mail: [tonkreativ@gmx.at](mailto:tonkreativ@gmx.at).
+  Einzelunternehmen, Gewerbe Kunsthandwerk, GISA 35653110, Mitglied WK Vorarlberg,
+  Aufsichtsbehörde BH Feldkirch. Unternehmensgegenstand: Auftragsarbeiten, Töpferkurse,
+  Kunstgegenstände aus Keramik. Haftungsausschluss für externe Links.
+- **AGB:** vollständige Geschäftsbedingungen vorhanden (Stand Jan. 2026) inkl.
+  Vertragsschluss, Preise/Zahlung, Lieferung, Eigentumsvorbehalt, Widerrufsrecht,
+  Widerrufsformular, Gewährleistung, Vertragssprache. Texte 1:1 von der alten Seite übernehmen.
+- **Standort:** Kirchplatz 3, 6822 Satteins (Karte/Anfahrt sinnvoll).
+
+-----
+
+# Bilder (von alter Seite wiederverwendbar)
+
+Alle unter Basis: <https://primary.jwwb.nl/public/u/v/v/temp-slexemfinehrltjvtwst/>
+Beispiele: l1150497-2-standard.jpg (Hero/Jana), l1150349-2 (Kinder töpfern),
+videocapture_20260522-121731 (Veranstaltungen), l1150269 (Malzeit), l1150258 / l1150404-2 /
+l1150318 / l1150337-2 (Malzeit-Galerie), l1150366 (Events), 20260319_162210 (Gross & Klein),
+20260312_135702 (Töpfern), 1779553705384 (Schwangerschaft), l1150468-2 / l1150477 (Über mich),
+20260413_080202 / 20251018_093552 / 20250511_121516 / 20250710_103632 / 20250704_143342 /
+20250704_143333 / 1773854795795 (Impressionen).
+
+> Hinweis: idealerweise Originale in voller Auflösung von Jana/Guntram Fechtig besorgen.
+
+# Empfohlenes Vorgehen mit Claude Code
+
+1. Projektordner anlegen, diese Datei hineinlegen.
+1. Erst die **Startseite** als Design-Vorlage perfektionieren (Farben, Schrift, Komponenten).
+1. Danach die übrigen 8 Seiten nach gleichem Muster.
+1. Auf dem Handy testen (responsiv).
+1. Online stellen (Hosting).
+
+# Offene Punkte (mit Jana klären)
+
+- **Buchung:** Teburio-Widgets weiter einbinden (iframe/Link) oder eigene Lösung?
+- **Shop:** Aktuell kein echter Shop, aber die AGB sprechen von einem “Internetshop”.
+  AGB an die tatsächliche Situation anpassen lassen (ggf. juristisch prüfen).
+- **Rechtstexte:** Inkonsistenzen bereinigen — Impressum nennt [tonkreativ@gmx.at](mailto:tonkreativ@gmx.at), AGB nennen
+  [jana.gams@web.de](mailto:jana.gams@web.de) und teils “D-6822” statt “A-6822”; AGB verweisen auf deutsches Recht
+  (BGB/TMG) obwohl Standort Österreich. Vor Veröffentlichung anpassen lassen.
+- **Domain/Hosting:** Wo soll die neue Seite laufen?
+- **Bildrechte/Nennung Guntram Fechtig** final klären.
