@@ -35,6 +35,31 @@ src/
 | `npm run build`   | Produktions-Build nach `./dist/`             |
 | `npm run preview` | Build lokal vorschauen                       |
 
+## Deployment (Vercel)
+
+Das Projekt ist für [Vercel](https://vercel.com) vorkonfiguriert (`vercel.json`).
+Vercel erkennt Astro automatisch und nutzt `astro build` → `dist/` (statisches
+Hosting). Einmalige Einrichtung:
+
+1. Auf [vercel.com](https://vercel.com/new) mit GitHub anmelden.
+2. **Add New… → Project** und das Repo `kisille/Ton-Kreativ` importieren.
+3. Framework wird als _Astro_ erkannt — Einstellungen einfach bestätigen.
+   (Build Command, Output `dist` und Clean URLs kommen aus `vercel.json`.)
+4. **Deploy**. Jeder Push auf einen Branch erzeugt eine Preview-URL, Merges auf
+   den Produktions-Branch gehen live. Eigene Domain unter _Settings → Domains_.
+
+Lokal testen (optional, mit der Vercel-CLI):
+
+```bash
+npm i -g vercel
+vercel        # Preview-Deployment
+vercel --prod # Produktions-Deployment
+```
+
+> Sobald das Kontaktformular (mit Backend) dazukommt, stellen wir per
+> `@astrojs/vercel`-Adapter auf Serverless/SSR um — die statische Basis bleibt
+> davon unberührt.
+
 ## Hinweise
 
 - Die Bilder werden vorerst von der alten Seite referenziert (Basis-URL in
