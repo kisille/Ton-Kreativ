@@ -1,0 +1,265 @@
+---
+/**
+ * Impressionen und Feedback (Projekt-Brief §8).
+ * Kundenstimmen, Einblicke in Veranstaltungen und Werk-Galerie.
+ * Die Bewertungs-/Kommentarfunktion (Backend) folgt am Schluss — vorerst
+ * ein Hinweis-Block.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Gallery from '../components/Gallery.astro';
+import { img, galleries, site } from '../data/site';
+
+const testimonials = [
+  {
+    name: 'Claudia Hartl',
+    text: 'Ein rundum gelungener Teamausflug mit viel Spass. Sympathische und geduldige Leitung, angenehme Atmosphäre — sehr empfehlenswert!',
+    stars: 5,
+  },
+  {
+    name: 'Nadine',
+    text: 'Ein wunderschöner Abend zu viert, ganz ohne Vorerfahrung. Wir wurden toll unterstützt, es war kreativ, meditativ und entspannend. Man fühlt sich wie zuhause — wir kommen auf jeden Fall wieder!',
+    stars: 5,
+  },
+  {
+    name: 'Lotta',
+    text: 'Super!',
+    stars: 5,
+  },
+];
+
+const insights = [
+  {
+    title: 'Kindergeburtstag',
+    text: 'Bis zu 6 Personen feiern gemeinsam. Muffins sind erlaubt, es gibt eine Kuchenpause und eine kleine Überraschung fürs Geburtstagskind.',
+  },
+  {
+    title: 'Weihnachtswerkstatt für Kinder',
+    text: 'Bei Crêpes und Kinderpunsch entstehen Teller, Schneemänner, Baumschmuck und Engel — die anschliessend liebevoll bemalt werden.',
+  },
+  {
+    title: 'Wir töpfern einen Becher',
+    text: 'Gross und klein werden gemeinsam kreativ — und am Ende nimmt jede:r den eigenen Becher mit nach Hause.',
+  },
+  {
+    title: 'Gauki — Ferienprogramm',
+    text: 'Beim Ferienprogramm wird mit Kindern und Erwachsenen getöpfert und gestaltet — für unvergessliche Ferientage.',
+  },
+];
+
+const impressionen = galleries.impressionen.map((file, i) => ({
+  src: img(file),
+  alt: `Eindruck aus dem Atelier Ton-kreativ (${i + 1})`,
+}));
+---
+
+<BaseLayout
+  title="Impressionen & Feedback — Ton-kreativ"
+  description="Kundenstimmen, Einblicke in Geburtstage, Kurse und die Weihnachtswerkstatt sowie eine Galerie der neuesten Werke aus dem Atelier Ton-kreativ."
+>
+  <!-- Intro -->
+  <section class="section imp-hero">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow">Impressionen &amp; Feedback</span>
+      <h1>Eindrücke aus dem Atelier</h1>
+      <p class="lead">
+        Ob Kindergeburtstag, Kurs oder kreativer Abend — hier bekommst du einen
+        Eindruck davon, was bei Ton-kreativ entsteht, und was unsere Gäste
+        erlebt haben.
+      </p>
+    </div>
+  </section>
+
+  <!-- Kundenstimmen -->
+  <section class="section section--sand" id="feedback">
+    <div class="container">
+      <header class="section-head text-center">
+        <span class="eyebrow">Kundenstimmen</span>
+        <h2>Das sagen unsere Gäste</h2>
+      </header>
+
+      <div class="testimonials">
+        {testimonials.map((t) => (
+          <figure class="testimonial">
+            <div class="testimonial__stars" aria-label={`${t.stars} von 5 Sternen`}>
+              {'★'.repeat(t.stars)}
+            </div>
+            <blockquote class="testimonial__text">{t.text}</blockquote>
+            <figcaption class="testimonial__name">{t.name}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Einblicke -->
+  <section class="section">
+    <div class="container">
+      <header class="section-head text-center">
+        <span class="eyebrow">Einblicke</span>
+        <h2>Was bei uns so los ist</h2>
+      </header>
+
+      <div class="insight-grid">
+        {insights.map((item) => (
+          <article class="insight">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie der Werke -->
+  <section class="section section--sand">
+    <div class="container">
+      <header class="section-head text-center">
+        <span class="eyebrow">Galerie</span>
+        <h2>Unsere neuesten Arbeiten</h2>
+      </header>
+      <Gallery images={impressionen} />
+    </div>
+  </section>
+
+  <!-- Hinweis: Bewertungsfunktion folgt -->
+  <section class="section">
+    <div class="container container--narrow">
+      <aside class="feedback-note">
+        <span class="feedback-note__stars" aria-hidden="true">★★★★★</span>
+        <h2>Du möchtest eine Bewertung hinterlassen?</h2>
+        <p>
+          Die Bewertungs- und Kommentarfunktion folgt in Kürze. Bis dahin freue
+          ich mich riesig über dein Feedback per Mail — und sage schon jetzt
+          herzlichen Dank!
+        </p>
+        <div class="feedback-note__actions">
+          <a class="btn btn--primary" href={`mailto:${site.email}`}>Feedback per Mail</a>
+          <a class="btn btn--ghost" href="/kontakt">Zum Kontakt</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-head {
+    max-width: 52rem;
+    margin-inline: auto;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  }
+  .section-head h2 {
+    margin-bottom: var(--space-md);
+  }
+
+  /* Intro */
+  .imp-hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Kundenstimmen */
+  .testimonials {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+  @media (min-width: 760px) {
+    .testimonials {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .testimonial {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: 0;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .testimonial__stars {
+    color: var(--terracotta);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+  }
+  .testimonial__text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1.45;
+    color: var(--ink);
+    flex: 1;
+  }
+  .testimonial__name {
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .testimonial__name::before {
+    content: '— ';
+  }
+
+  /* Einblicke */
+  .insight-grid {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  @media (min-width: 680px) {
+    .insight-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .insight {
+    padding: clamp(1.5rem, 3vw, 2rem);
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--terracotta);
+    border-radius: var(--radius-md);
+  }
+  .insight h3 {
+    margin-bottom: var(--space-sm);
+  }
+  .insight p {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Hinweis-Block */
+  .feedback-note {
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius-lg);
+  }
+  .feedback-note__stars {
+    display: block;
+    color: var(--terracotta);
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--space-md);
+  }
+  .feedback-note h2 {
+    color: var(--cream);
+    margin-bottom: var(--space-md);
+  }
+  .feedback-note p {
+    margin: 0 auto;
+    max-width: 50ch;
+    color: color-mix(in srgb, var(--cream) 82%, transparent);
+  }
+  .feedback-note__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+  /* Ghost-Button auf dunklem Grund lesbar machen */
+  .feedback-note .btn--ghost {
+    color: var(--cream);
+    border-color: color-mix(in srgb, var(--cream) 45%, transparent);
+  }
+  .feedback-note .btn--ghost:hover {
+    background: var(--cream);
+    color: var(--ink);
+  }
+</style>
