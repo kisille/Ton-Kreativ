@@ -1,0 +1,99 @@
+---
+/**
+ * Gallery — responsives Bildraster mit gemeinsamem Fotonachweis.
+ * Wiederverwendbar für alle bild-lastigen Seiten (Malzeit, Impressionen …).
+ */
+import { site } from '../data/site';
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  credit?: string;
+  creditUrl?: string;
+}
+
+const {
+  images,
+  credit = site.photographer,
+  creditUrl = site.photographerUrl,
+} = Astro.props;
+---
+
+<div class="gallery">
+  <ul class="gallery__grid">
+    {
+      images.map((image) => (
+        <li class="gallery__item media">
+          <img
+            src={image.src}
+            alt={image.alt}
+            width="600"
+            height="600"
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
+      ))
+    }
+  </ul>
+  <p class="gallery__credit">
+    <span class="gallery__cam" aria-hidden="true">◎</span>
+    Fotos:&nbsp;
+    <a href={creditUrl} target="_blank" rel="noopener noreferrer">{credit}</a>
+  </p>
+</div>
+
+<style>
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.6rem, 2vw, 1.25rem);
+  }
+  @media (min-width: 720px) {
+    .gallery__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .gallery__item {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-md);
+  }
+  .gallery__item img {
+    transition: transform 0.5s var(--ease);
+  }
+  .gallery__item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery__credit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: var(--space-lg) auto 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .gallery__cam {
+    color: var(--terracotta);
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+  .gallery__credit a {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--terracotta);
+    transition: color var(--transition);
+  }
+  .gallery__credit a:hover {
+    color: var(--terracotta);
+  }
+</style>

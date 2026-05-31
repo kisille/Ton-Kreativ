@@ -58,4 +58,17 @@ export const photos = {
   ueberMich2: 'l1150477.jpg',
   kinderToepfern: 'l1150349-2.jpg',
   veranstaltungen: 'videocapture_20260522-121731.jpg',
+  malzeit: 'l1150269.jpg',
+} as const;
+
+/** Bildergalerien (Dateinamen, gleiche Quelle wie photos). */
+export const galleries = {
+  malzeit: ['l1150258.jpg', 'l1150404-2.jpg', 'l1150318.jpg', 'l1150337-2.jpg'],
+} as const;
+
+/** Teburio-Buchungs-Widgets (siehe Projekt-Brief). */
+export const booking = {
+  malplatz: 'https://app.teburio.de/widget/Res7oGqehPGrRv4eE',
+  afterWork: 'https://app.teburio.de/widget/e/K66dPL4szeto9btFy',
+  grossKlein: 'https://app.teburio.de/widget/e/hP9AmScED3dTzsnLy',
 } as const;
