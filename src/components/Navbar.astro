@@ -182,12 +182,12 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       top: 0;
       left: 0;
       right: 0;
-      /* Großer, durchgehend beiger Layer: reicht über den sichtbaren Bereich
-         hinaus nach unten, damit die untere Safari-URL-Leiste immer auf Beige
-         trifft und ohne Haken darauf umstellt. */
+      /* Exakte sichtbare Höhe (dvh): deckt auch hinter die kompakte iOS-Bar,
+         ragt aber NICHT dahinter hinaus → kein zurückbleibender beiger Streifen
+         beim Schließen. Da kein Scroll-Lock die URL-Leiste umschaltet, bleibt
+         dvh konstant (kein Nachblenden). */
       height: 100vh; /* Fallback */
-      height: 100lvh; /* große Viewport-Höhe */
-      min-height: 100lvh;
+      height: 100dvh;
       background: var(--cream);
       z-index: 90;
       /* Sanftes Einblenden des GESAMTEN Layers (Opacity) statt Slide von
@@ -232,25 +232,10 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       visibility: visible;
       transition: opacity 0.3s var(--ease);
     }
-    /* Scroll-Lock OHNE overflow:hidden. overflow:hidden zwingt iOS-Safari, die
-       URL-Leiste umzuschalten – genau das animiert die Viewport-Höhe und lässt
-       den unteren beigen Bereich verzögert nachblenden / hängenbleiben.
-       position:fixed friert die Seite an Ort und Stelle ein (top = -scrollY per
-       JS), ohne die URL-Leiste zu triggern. */
-    :global(body.nav-open) {
-      position: fixed;
-      left: 0;
-      right: 0;
-      width: 100%;
-    }
-    /* body:fixed schiebt den sticky-Header weg → Header (inkl. X) am Viewport
-       fixieren, damit der Schließen-Button immer sichtbar bleibt. */
-    :global(body.nav-open) .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
+    /* Kein CSS-Scroll-Lock (kein position:fixed/overflow auf <body>) → die Seite
+       verschiebt sich beim Öffnen NICHT und die iOS-URL-Leiste wird nicht
+       umgeschaltet. Das Scrollen der Hintergrundseite wird stattdessen per JS
+       (touchmove) unterbunden. */
     /* Hamburger -> X */
     :global(body.nav-open) .nav-toggle__bar:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
@@ -269,25 +254,24 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('primary-nav');
 
-  let scrollY = 0;
+  // Hintergrund-Scroll sperren OHNE Layout-Änderung (kein Versatz!): Touch-Scroll
+  // außerhalb des Menüs unterbinden. Das Menü selbst darf scrollen, falls sein
+  // Inhalt höher als der Bildschirm ist. Da weder position:fixed noch overflow
+  // gesetzt wird, verschiebt sich die Seite nicht und die iOS-URL-Leiste bleibt
+  // unverändert (→ kein Nachblenden, kein Versatz).
+  function lockScroll(e: TouchEvent) {
+    const target = e.target as Node;
+    const canScrollInsideMenu =
+      !!nav && nav.contains(target) && nav.scrollHeight > nav.clientHeight;
+    if (!canScrollInsideMenu) e.preventDefault();
+  }
 
   function setOpen(open: boolean) {
+    document.body.classList.toggle('nav-open', open);
     if (open) {
-      // Scroll-Position merken und Seite per position:fixed einfrieren, ohne die
-      // iOS-URL-Leiste umzuschalten (das verursacht das Nachblenden unten).
-      scrollY = window.scrollY;
-      document.body.style.top = `-${scrollY}px`;
-      document.body.classList.add('nav-open');
+      document.addEventListener('touchmove', lockScroll, { passive: false });
     } else {
-      document.body.classList.remove('nav-open');
-      document.body.style.top = '';
-      // Scroll-Position SOFORT (ohne smooth) wiederherstellen – sonst scrollt
-      // die Seite beim Schließen sichtbar von oben zurück zum Ausgangspunkt.
-      const html = document.documentElement;
-      const prevBehavior = html.style.scrollBehavior;
-      html.style.scrollBehavior = 'auto';
-      window.scrollTo(0, scrollY);
-      html.style.scrollBehavior = prevBehavior;
+      document.removeEventListener('touchmove', lockScroll);
     }
     toggle?.setAttribute('aria-expanded', String(open));
     toggle?.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
