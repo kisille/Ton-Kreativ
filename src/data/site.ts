@@ -60,6 +60,7 @@ export const photos = {
   veranstaltungen: 'videocapture_20260522-121731.jpg',
   malzeit: 'l1150269.jpg',
   toepfern: '20260312_135702.jpg',
+  schwangerschaft: '1779553705384.jpg',
 } as const;
 
 /** Bildergalerien (Dateinamen, gleiche Quelle wie photos). */
