@@ -1,0 +1,241 @@
+---
+/**
+ * Schwangerschaft und Erinnerungen (Projekt-Brief §5).
+ * Zwei Angebote: Babybauchschale und Babyfuss auf Keramik. Beide auf Anfrage.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Figure from '../components/Figure.astro';
+import { img, photos, site } from '../data/site';
+
+const mailto = `mailto:${site.email}`;
+---
+
+<BaseLayout
+  title="Schwangerschaft & Erinnerungen — Ton-kreativ"
+  description="Bleibende Erinnerungen aus Keramik: Babybauchschale und Babyfuss-Abdrücke auf Tellern, Tassen & mehr. Liebevoll gestaltet im Atelier Ton-kreativ in Satteins."
+>
+  <!-- Intro -->
+  <section class="section mem-hero">
+    <div class="container mem-hero__inner">
+      <div class="mem-hero__text">
+        <span class="eyebrow">Schwangerschaft &amp; Erinnerungen</span>
+        <h1>Momente, die bleiben</h1>
+        <p class="lead">
+          Manche Augenblicke möchte man für immer festhalten. Aus Ton entstehen
+          ganz persönliche Erinnerungsstücke — an die Schwangerschaft, an die
+          ersten Wochen mit deinem Baby. In Ruhe, ganz für dich.
+        </p>
+        <a class="btn btn--primary" href={mailto}>Anfrage schreiben</a>
+      </div>
+      <Figure
+        src={img(photos.schwangerschaft)}
+        alt="Liebevoll gestaltete Keramik-Erinnerung aus dem Atelier"
+        ratio="4 / 5"
+        eager={true}
+        class="mem-hero__figure"
+      />
+    </div>
+  </section>
+
+  <!-- Babybauchschale -->
+  <section class="section section--sand">
+    <div class="container offering">
+      <div class="offering__text">
+        <span class="eyebrow">Babybauchschale</span>
+        <h2>Dein Babybauch als bleibende Erinnerung</h2>
+        <p>
+          Eine Babybauchschale ist eine wunderschöne Erinnerung an deine
+          Schwangerschaft, die du später ganz frei gestalten kannst. Damit du
+          die nötige Ruhe und Privatsphäre hast, sind Termine auch ausserhalb
+          der regulären Öffnungszeiten möglich.
+        </p>
+        <p>
+          Alternativ kannst du später die Babyfüsse deines Kindes in die Schale
+          gestalten — so wächst die Erinnerung mit.
+        </p>
+      </div>
+
+      <aside class="pricebox">
+        <h3 class="pricebox__title">Kosten</h3>
+        <p class="pricebox__main"><span>80&nbsp;€</span> inkl. beider Brände &amp; Zeit</p>
+        <ul class="pricebox__list">
+          <li>Farbig gestalten <strong>+ 25&nbsp;€</strong></li>
+          <li>Termine auch ausserhalb der Öffnungszeiten</li>
+        </ul>
+        <a class="btn btn--primary pricebox__btn" href={mailto}>Termin anfragen</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Babyfuss auf Keramik -->
+  <section class="section">
+    <div class="container offering offering--reverse">
+      <div class="offering__text">
+        <span class="eyebrow">Babyfuss auf Keramik</span>
+        <h2>Kleine Füsschen für die Ewigkeit</h2>
+        <p>
+          Die zarten Füsschen-Abdrücke deines Babys finden ihren Platz auf
+          Tellern, Tassen, Schüsseln, Dosen oder Vasen. Nach dem Glasieren und
+          Brennen sind die Stücke voll alltagstauglich.
+        </p>
+        <p>
+          Eine besonders schöne Geschenkidee für die ganze Familie — von Oma und
+          Opa bis zu den Paten.
+        </p>
+        <a class="btn btn--ghost" href={mailto}>Schreib mir eine Anfrage</a>
+      </div>
+
+      <ul class="usecases">
+        <li>Teller</li>
+        <li>Tassen</li>
+        <li>Schüsseln</li>
+        <li>Dosen</li>
+        <li>Vasen</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section mem-cta">
+    <div class="container container--narrow text-center">
+      <h2>Halten wir den Moment gemeinsam fest</h2>
+      <p class="lead">
+        Schreib mir gerne eine Anfrage — ich melde mich und wir finden einen
+        ruhigen Termin, der zu dir passt.
+      </p>
+      <div class="mem-cta__actions">
+        <a class="btn btn--primary" href={mailto}>{site.email}</a>
+        <a class="btn btn--ghost" href="/kontakt">Zum Kontakt</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Intro */
+  .mem-hero__inner {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .mem-hero__text {
+    max-width: 38rem;
+  }
+  .mem-hero h1 {
+    margin-bottom: var(--space-lg);
+  }
+  .mem-hero .btn {
+    margin-top: var(--space-xl);
+  }
+  @media (min-width: 880px) {
+    .mem-hero__inner {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .mem-hero__figure {
+      max-width: 28rem;
+      margin-left: auto;
+    }
+  }
+
+  /* Angebots-Block */
+  .offering {
+    display: grid;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: center;
+  }
+  .offering__text {
+    max-width: 42rem;
+  }
+  .offering__text h2 {
+    margin-bottom: var(--space-md);
+  }
+  .offering__text p + p {
+    margin-top: var(--space-md);
+  }
+  .offering__text .btn {
+    margin-top: var(--space-lg);
+  }
+  .offering__text p {
+    color: var(--muted);
+  }
+  @media (min-width: 820px) {
+    .offering {
+      grid-template-columns: 1.4fr 1fr;
+    }
+    .offering--reverse .offering__text {
+      order: 2;
+    }
+  }
+
+  /* Preis-Box */
+  .pricebox {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--terracotta);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    box-shadow: var(--shadow-sm);
+  }
+  .pricebox__title {
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--space-sm);
+  }
+  .pricebox__main {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--muted);
+    margin-bottom: var(--space-md);
+  }
+  .pricebox__main span {
+    display: block;
+    font-size: clamp(2.5rem, 6vw, 3.25rem);
+    color: var(--ink);
+    line-height: 1;
+  }
+  .pricebox__list {
+    display: grid;
+    gap: 0.6rem;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--line);
+  }
+  .pricebox__list li {
+    color: var(--muted);
+  }
+  .pricebox__list strong {
+    color: var(--terracotta);
+  }
+  .pricebox__btn {
+    margin-top: var(--space-lg);
+    width: 100%;
+  }
+
+  /* Verwendungs-Chips */
+  .usecases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-content: center;
+  }
+  .usecases li {
+    padding: 0.65rem 1.3rem;
+    background: var(--sand-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+  }
+
+  /* CTA */
+  .mem-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    justify-content: center;
+    margin-top: var(--space-xl);
+  }
+</style>
