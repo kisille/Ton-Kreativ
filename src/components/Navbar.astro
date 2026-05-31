@@ -190,12 +190,12 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       height: 100dvh;
       background: var(--cream);
       z-index: 90;
-      /* Geschlossen: SOFORT ausblenden. Ein animiertes Fade-out lässt iOS den
-         Bereich hinter der schwebenden URL-Leiste verzögert neu zeichnen → der
-         beige Streifen unten "hängt" 0,2–0,5 s nach. Instant-Close vermeidet
-         das. Das Einblenden wird im .nav-open-Block sanft animiert. */
+      /* Kurzes, gleich schnelles Aus-/Einblenden. Lineare Kurve, damit die
+         iOS-URL-Leiste (die ihre Tönung von der Fläche dahinter abnimmt)
+         synchron mit dem restlichen Menü ein-/ausblendet – ease-in-out ließ den
+         unteren Balken durch langsamen Start/Ende vor- bzw. nachlaufen. */
       opacity: 0;
-      transition: opacity 0s, visibility 0s;
+      transition: opacity 0.2s linear, visibility 0s linear 0.2s;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
@@ -231,7 +231,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     :global(body.nav-open) .nav {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.3s var(--ease);
+      transition: opacity 0.2s linear, visibility 0s;
     }
     /* Kein CSS-Scroll-Lock (kein position:fixed/overflow auf <body>) → die Seite
        verschiebt sich beim Öffnen NICHT und die iOS-URL-Leiste wird nicht
