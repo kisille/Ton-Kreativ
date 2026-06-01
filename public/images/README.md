@@ -20,7 +20,8 @@ Empfehlung: Längste Kante ca. **2000 px**, Dateigröße < ~1 MB pro Bild.
 | `atelier-ueber-mich-1.jpg` | Atelier / Jana bei der Arbeit | hochkant | Über mich |
 | `atelier-ueber-mich-2.jpg` | Atelier / Detail | hochkant | Über mich |
 | `ueber-mich-vision.jpg` | Jana mit Kind (persönlich) | quer | Über mich (Vision) |
-| `malzeit.jpg` | Keramik bemalen / Malplatz | hochkant | Buche deine Malzeit & Events |
+| `malzeit.jpg` | Keramik bemalen (Hand am Becher) | hochkant | Events-Karte & Malzeit-Galerie |
+| `malzeit-kind.jpg` | Kind beim Bemalen | hochkant | Buche deine Malzeit (Hero) |
 | `toepfern.jpg` | Töpfern an der Scheibe / Ton | hochkant | Nutzungspreise |
 | `schwangerschaft-erinnerungen.jpg` | Hand-/Fussabdruck, Babyhand | hochkant | Erinnerungen |
 | `kinder-toepfern.jpg` | Kinder beim Töpfern | quer | Startseite (Karte) |
@@ -28,7 +29,7 @@ Empfehlung: Längste Kante ca. **2000 px**, Dateigröße < ~1 MB pro Bild.
 | `afterwork-painting.jpg` | Gemütliche Abendrunde | quer | Events |
 | `gross-und-klein.jpg` | Erwachsene + Kind zusammen | quer | Events (Karte) |
 | `gross-und-klein-detail.jpg` | Töpfern (Kind/Hände am Ton) | hochkant | Events (Workshop-Detail) |
-| `galerie-malzeit-1.jpg` … `-4.jpg` | bemalte Werkstücke | quadratisch | Buche deine Malzeit |
+| `galerie-malzeit-1.jpg` … `-3.jpg` | bemalte Werkstücke | quadratisch | Buche deine Malzeit (+ `malzeit.jpg` als 4.) |
 | `galerie-impressionen-1.jpg` … `-6.jpg` | schönste Eindrücke/Werke | quadratisch | Impressionen & Feedback |
 
 > Tipp zur Ausrichtung: „hochkant" wird hochformatig angezeigt, „quer"

@@ -59,6 +59,7 @@ export const photos = {
   kinderToepfern: 'kinder-toepfern.jpg',
   veranstaltungen: 'veranstaltungen.jpg',
   malzeit: 'malzeit.jpg',
+  malzeitHero: 'malzeit-kind.jpg',
   toepfern: 'toepfern.jpg',
   schwangerschaft: 'schwangerschaft-erinnerungen.jpg',
   events: 'afterwork-painting.jpg',
@@ -72,7 +73,7 @@ export const galleries = {
     'galerie-malzeit-1.jpg',
     'galerie-malzeit-2.jpg',
     'galerie-malzeit-3.jpg',
-    'galerie-malzeit-4.jpg',
+    'malzeit.jpg',
   ],
   impressionen: [
     'galerie-impressionen-1.jpg',
