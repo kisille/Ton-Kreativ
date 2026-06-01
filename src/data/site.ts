@@ -62,6 +62,7 @@ export const photos = {
   schwangerschaft: 'schwangerschaft-erinnerungen.jpg',
   events: 'afterwork-painting.jpg',
   grossKlein: 'gross-und-klein.jpg',
+  grossKleinDetail: 'gross-und-klein-detail.jpg',
 } as const;
 
 /** Bildergalerien (lokale Dateinamen in /public/images/). */
@@ -80,7 +81,6 @@ export const galleries = {
     'galerie-impressionen-5.jpg',
     'galerie-impressionen-6.jpg',
     'galerie-impressionen-7.jpg',
-    'galerie-impressionen-8.jpg',
   ],
 } as const;
 
