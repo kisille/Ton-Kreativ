@@ -160,24 +160,27 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
   /* --------- Desktop: Wortmarke links, Navigation rechts auf zwei Zeilen --------- */
   @media (min-width: 1241px) {
+    /* Wortmarke links | Navigation mittig (page-zentriert) | Ausgleich rechts */
     .nav-bar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
+      gap: 0;
       padding-block: 1.15rem;
     }
-    .nav {
-      flex: 1;
+    .brand {
+      justify-self: start;
     }
     .nav__list {
-      justify-content: flex-end;
+      justify-content: center;
       flex-wrap: wrap;
-      /* Zeilenabstand (vertikal) grosszügig für mehr Übersicht. */
-      gap: 1.1rem clamp(1rem, 1.5vw, 1.5rem);
-      max-width: 54rem;
-      margin-left: auto;
+      /* grosszügiger Zeilenabstand (vertikal) für mehr Übersicht. */
+      gap: 1.1rem clamp(0.9rem, 1.3vw, 1.2rem);
+      max-width: 50rem;
+      margin-inline: auto;
     }
     .nav__link {
-      font-size: 1rem;
+      font-size: 0.95rem;
       padding: 0.25rem 0;
     }
   }
