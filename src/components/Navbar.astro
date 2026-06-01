@@ -158,6 +158,32 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     transition: transform var(--transition), opacity var(--transition);
   }
 
+  /* --------- Desktop: zweizeiliger Header (Wortmarke oben, Navigation mittig darunter) --------- */
+  @media (min-width: 1241px) {
+    .nav-bar {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-block: 0.7rem;
+    }
+    .brand {
+      font-size: 1.45rem;
+    }
+    .nav {
+      width: 100%;
+    }
+    .nav__list {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem clamp(0.6rem, 0.9vw, 0.95rem);
+    }
+    .nav__link {
+      font-size: 0.82rem;
+      padding: 0.3rem 0;
+    }
+  }
+
   /* --------- Mobil: Off-Canvas-Menü unter 1240px --------- */
   @media (max-width: 1240px) {
     /* Wichtig: backdrop-filter macht den Header zum containing block für
