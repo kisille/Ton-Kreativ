@@ -36,46 +36,50 @@ export const site = {
   photographerUrl: 'https://www.guntramfechtig.com',
 };
 
-/** Basis-URL der (vorerst wiederverwendeten) Bilder von der aktuellen Seite. */
-export const IMG_BASE =
-  'https://primary.jwwb.nl/public/u/v/v/temp-slexemfinehrltjvtwst/';
+/** Basis-Pfad der lokalen Bilder (liegen in /public/images/). */
+export const IMG_BASE = '/images/';
 
 /**
- * Hilfsfunktion: vollständige Bild-URL aus einem Dateinamen.
- * Quelle ist aktuell die bestehende ton-kreativ.at-Seite. Sobald Original-
- * dateien (volle Auflösung) im Projekt liegen, muss nur diese Funktion bzw.
- * IMG_BASE angepasst werden — alle Aufrufstellen bleiben unverändert.
+ * Hilfsfunktion: vollständiger Bildpfad aus einem Dateinamen.
+ * Die Bilder liegen lokal in /public/images/. Zum Austauschen einfach die
+ * Datei mit DEMSELBEN Namen dort ersetzen — alle Aufrufstellen bleiben gleich.
  */
 export const img = (file: string): string => `${IMG_BASE}${file}`;
 
 /**
- * Benannte Fotos der aktuellen Seite (alle von Guntram Fechtig).
- * An EINER Stelle gepflegt, damit sie projektweit wiederverwendbar sind.
+ * Benannte Fotos. Dateinamen sind bewusst sprechend gewählt, damit klar ist,
+ * welches Motiv wohin gehört. Liegen in /public/images/ (aktuell als
+ * beschriftete Platzhalter; Originale einfach gleichnamig ersetzen).
  */
 export const photos = {
-  janaPortrait: 'l1150497-2-standard.jpg',
-  ueberMich1: 'l1150468-2.jpg',
-  ueberMich2: 'l1150477.jpg',
-  kinderToepfern: 'l1150349-2.jpg',
-  veranstaltungen: 'videocapture_20260522-121731.jpg',
-  malzeit: 'l1150269.jpg',
-  toepfern: '20260312_135702.jpg',
-  schwangerschaft: '1779553705384.jpg',
-  events: 'l1150366.jpg',
-  grossKlein: '20260319_162210.jpg',
+  janaPortrait: 'jana-portrait.jpg',
+  ueberMich1: 'atelier-ueber-mich-1.jpg',
+  ueberMich2: 'atelier-ueber-mich-2.jpg',
+  kinderToepfern: 'kinder-toepfern.jpg',
+  veranstaltungen: 'veranstaltungen.jpg',
+  malzeit: 'malzeit.jpg',
+  toepfern: 'toepfern.jpg',
+  schwangerschaft: 'schwangerschaft-erinnerungen.jpg',
+  events: 'afterwork-painting.jpg',
+  grossKlein: 'gross-und-klein.jpg',
 } as const;
 
-/** Bildergalerien (Dateinamen, gleiche Quelle wie photos). */
+/** Bildergalerien (lokale Dateinamen in /public/images/). */
 export const galleries = {
-  malzeit: ['l1150258.jpg', 'l1150404-2.jpg', 'l1150318.jpg', 'l1150337-2.jpg'],
+  malzeit: [
+    'galerie-malzeit-1.jpg',
+    'galerie-malzeit-2.jpg',
+    'galerie-malzeit-3.jpg',
+    'galerie-malzeit-4.jpg',
+  ],
   impressionen: [
-    '20260413_080202.jpg',
-    '20251018_093552.jpg',
-    '20250511_121516.jpg',
-    '20250710_103632.jpg',
-    '20250704_143342.jpg',
-    '20250704_143333.jpg',
-    '1773854795795.jpg',
+    'galerie-impressionen-1.jpg',
+    'galerie-impressionen-2.jpg',
+    'galerie-impressionen-3.jpg',
+    'galerie-impressionen-4.jpg',
+    'galerie-impressionen-5.jpg',
+    'galerie-impressionen-6.jpg',
+    'galerie-impressionen-7.jpg',
   ],
 } as const;
 
