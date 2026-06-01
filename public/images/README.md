@@ -1,7 +1,8 @@
 # Bilder der Website
 
-Hier liegen alle Fotos der Website. Aktuell sind es **beschriftete Platzhalter**
-(„Foto folgt"). Zum Einsetzen deiner echten Fotos:
+Hier liegen alle Fotos der Website. Die echten Fotos sind eingesetzt. Zum
+**Austauschen** eines Bildes einfach eine neue Datei mit dem **gleichen
+Dateinamen** hochladen (überschreibt das alte) — sonst ändert sich nichts:
 
 1. Foto als **JPG** speichern (iPhone: in Fotos → Teilen/Exportieren als „JPEG",
    **nicht** HEIC — sonst wird es nicht angezeigt).
