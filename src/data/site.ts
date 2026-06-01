@@ -99,12 +99,12 @@ export const openingHours = [
 ] as const;
 
 /**
- * Standort für die Karte/Anfahrt. Koordinaten = Kirchplatz Satteins
- * (Näherung). `mapsQuery` wird für den exakten "Route planen"-Link genutzt.
+ * Standort für die Karte/Anfahrt. Koordinaten = Kirchplatz Satteins.
+ * `mapsQuery` wird für den exakten "Route planen"-Link genutzt.
  */
 export const location = {
-  lat: 47.2331,
-  lon: 9.6489,
+  lat: 47.2246,
+  lon: 9.6721,
   mapsQuery: 'Kirchplatz 3, 6822 Satteins, Österreich',
 } as const;
 

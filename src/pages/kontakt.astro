@@ -14,7 +14,7 @@ import { site, openingHours, location, forms } from '../data/site';
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || forms.web3formsAccessKey;
 
 // OpenStreetMap-Embed (ohne Tracking/Key) rund um den Standort.
-const d = 0.006;
+const d = 0.004;
 const bbox = [location.lon - d, location.lat - d, location.lon + d, location.lat + d].join(',');
 const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${location.lat},${location.lon}`;
 const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.mapsQuery)}`;
