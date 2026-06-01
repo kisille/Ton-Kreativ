@@ -1,7 +1,8 @@
 ---
 /**
  * Über mich — Janas Geschichte (Projekt-Brief §6).
- * Bild-lastige, editoriale Seite. Alle Fotos von Guntram Fechtig (Nachweis via Figure).
+ * Bild-lastige, editoriale Seite. Foto-Nachweis (viele, nicht alle Bilder von
+ * Guntram Fechtig) als dezenter Dank-Banner am Seitenende.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Figure from '../components/Figure.astro';
@@ -125,7 +126,7 @@ import { img, photos, site } from '../data/site';
       <aside class="credit-banner">
         <span class="credit-banner__cam" aria-hidden="true">◎</span>
         <p>
-          Alle Fotografien auf dieser Seite stammen von
+          Viele der Fotografien auf dieser Seite stammen von
           <a href={site.photographerUrl} target="_blank" rel="noopener noreferrer">
             {site.photographer}</a>. Herzlichen Dank für die wunderschönen
           Eindrücke aus dem Atelier.
