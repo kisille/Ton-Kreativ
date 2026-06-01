@@ -163,7 +163,7 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     .nav-bar {
       align-items: center;
       justify-content: space-between;
-      padding-block: 0.85rem;
+      padding-block: 1.15rem;
     }
     .nav {
       flex: 1;
@@ -171,7 +171,8 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     .nav__list {
       justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 0.6rem clamp(1rem, 1.5vw, 1.5rem);
+      /* Zeilenabstand (vertikal) grosszügig für mehr Übersicht. */
+      gap: 1.1rem clamp(1rem, 1.5vw, 1.5rem);
       max-width: 54rem;
       margin-left: auto;
     }

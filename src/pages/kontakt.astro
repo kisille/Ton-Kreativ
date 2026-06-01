@@ -29,7 +29,7 @@ const mapsLinkApple = `https://maps.apple.com/?daddr=${dest}`;
   description="Schreib mir über das Kontaktformular oder per E-Mail. Hier findest du auch Adresse, Öffnungszeiten und den Weg ins Atelier Ton-kreativ in Satteins."
 >
   <!-- Intro -->
-  <section class="section">
+  <section class="section contact-intro">
     <div class="container container--narrow text-center">
       <span class="eyebrow">Kontakt</span>
       <h1>Schreib mir</h1>
@@ -146,6 +146,14 @@ const mapsLinkApple = `https://maps.apple.com/?daddr=${dest}`;
 </BaseLayout>
 
 <style>
+  /* Intro: etwas mehr Luft zwischen Überschrift und Text. */
+  .contact-intro h1 {
+    margin-bottom: var(--space-lg);
+  }
+  .contact-intro .lead {
+    margin-inline: auto;
+  }
+
   .section-head {
     max-width: 52rem;
     margin-inline: auto;
