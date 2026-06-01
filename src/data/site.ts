@@ -85,3 +85,31 @@ export const booking = {
   afterWork: 'https://app.teburio.de/widget/e/K66dPL4szeto9btFy',
   grossKlein: 'https://app.teburio.de/widget/e/hP9AmScED3dTzsnLy',
 } as const;
+
+/** Reguläre Öffnungszeiten (zentral, von mehreren Seiten genutzt). */
+export const openingHours = [
+  { day: 'Donnerstag', time: '14:00 – 18:30' },
+  { day: 'Freitag', time: '14:00 – 21:00' },
+  { day: 'Samstag', time: '9:30 – 18:30' },
+] as const;
+
+/**
+ * Standort für die Karte/Anfahrt. Koordinaten = Kirchplatz Satteins
+ * (Näherung). `mapsQuery` wird für den exakten "Route planen"-Link genutzt.
+ */
+export const location = {
+  lat: 47.2331,
+  lon: 9.6489,
+  mapsQuery: 'Kirchplatz 3, 6822 Satteins, Österreich',
+} as const;
+
+/**
+ * Formular-Konfiguration.
+ * Web3Forms-Access-Key (öffentlich, kostenlos unter https://web3forms.com).
+ * Sobald hier der Key eingetragen ist, verschickt das Kontaktformular die
+ * Nachrichten direkt an die hinterlegte E-Mail — kein Server nötig.
+ * Alternativ per Umgebungsvariable PUBLIC_WEB3FORMS_KEY setzen.
+ */
+export const forms = {
+  web3formsAccessKey: '',
+} as const;

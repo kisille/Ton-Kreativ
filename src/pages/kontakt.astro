@@ -1,0 +1,359 @@
+---
+/**
+ * Kontakt (Projekt-Brief §7).
+ * Kontaktformular (Name*, E-Mail*, Nachricht*) mit Honeypot gegen Spam,
+ * direkte Kontaktdaten, Öffnungszeiten und eine kleine Standort-Karte.
+ *
+ * Versand über Web3Forms (https://web3forms.com) — kein eigener Server nötig.
+ * Der Access-Key wird zentral in `forms.web3formsAccessKey` (oder via
+ * Umgebungsvariable PUBLIC_WEB3FORMS_KEY) gepflegt.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, openingHours, location, forms } from '../data/site';
+
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || forms.web3formsAccessKey;
+
+// OpenStreetMap-Embed (ohne Tracking/Key) rund um den Standort.
+const d = 0.006;
+const bbox = [location.lon - d, location.lat - d, location.lon + d, location.lat + d].join(',');
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${location.lat},${location.lon}`;
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.mapsQuery)}`;
+---
+
+<BaseLayout
+  title="Kontakt — Ton-kreativ"
+  description="Schreib mir über das Kontaktformular oder per E-Mail. Hier findest du auch Adresse, Öffnungszeiten und den Weg ins Atelier Ton-kreativ in Satteins."
+>
+  <!-- Intro -->
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow">Kontakt</span>
+      <h1>Schreib mir</h1>
+      <p class="lead">
+        Für Fragen oder Terminvereinbarungen kannst du mich gerne über das
+        Kontaktformular erreichen. Ich freue mich darauf, von dir zu hören!
+      </p>
+    </div>
+  </section>
+
+  <!-- Formular + Kontaktdaten -->
+  <section class="section section--sand" style="padding-top: 0;">
+    <div class="container contact-grid">
+      <!-- Formular -->
+      <div class="card form-card">
+        <h2>Nachricht senden</h2>
+
+        <form id="contact-form" class="form" novalidate data-email={site.email}
+          action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value={accessKey} />
+          <input type="hidden" name="subject"
+            value="Neue Nachricht über das Kontaktformular – Ton-kreativ" />
+          <input type="hidden" name="from_name" value="Ton-kreativ Website" />
+          <!-- Honeypot: für Menschen unsichtbar, Bots füllen es aus. -->
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1"
+            autocomplete="off" aria-hidden="true" />
+
+          <div class="field">
+            <label for="name">Name <span aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" required autocomplete="name"
+              placeholder="Dein Name" />
+          </div>
+
+          <div class="field">
+            <label for="email">E-Mail-Adresse <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email"
+              placeholder="dein@beispiel.at" />
+          </div>
+
+          <div class="field">
+            <label for="message">Nachricht <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" required
+              placeholder="Worum geht es?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary form__submit">
+            Absenden
+          </button>
+
+          <p id="form-status" class="form__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <!-- Direkte Kontaktdaten -->
+      <aside class="contact-info">
+        <div class="info-block">
+          <h2>Direkt erreichen</h2>
+          <p class="info-row">
+            <span class="info-label">E-Mail</span>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </p>
+          <p class="info-row">
+            <span class="info-label">Atelier</span>
+            <span>{site.owner}<br />{site.street}<br />{site.city}<br />{site.country}</span>
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h3>Öffnungszeiten</h3>
+          <ul class="hours">
+            {openingHours.map((h) => (
+              <li><span>{h.day}</span><span>{h.time}</span></li>
+            ))}
+          </ul>
+          <p class="hours-note">Gruppen gern auch nach Vereinbarung.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Standort / Karte -->
+  <section class="section">
+    <div class="container">
+      <header class="section-head text-center">
+        <span class="eyebrow">Standort</span>
+        <h2>So findest du uns</h2>
+        <p class="lead">{site.street}, {site.city}</p>
+      </header>
+
+      <div class="map-wrap">
+        <iframe
+          class="map"
+          src={mapSrc}
+          title={`Karte: Standort ${site.name} in ${site.city}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-lg);">
+        <a class="btn btn--ghost" href={mapsLink} target="_blank" rel="noopener">
+          Route planen
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section-head {
+    max-width: 52rem;
+    margin-inline: auto;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  .section-head h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  /* Grid: Formular + Infos */
+  .contact-grid {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+  @media (min-width: 820px) {
+    .contact-grid {
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .form-card h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Formularfelder */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .field label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .field label span {
+    color: var(--terracotta);
+  }
+  .field input,
+  .field textarea {
+    font: inherit;
+    color: var(--ink);
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 0.7rem 0.85rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 7rem;
+  }
+  .field input:focus-visible,
+  .field textarea:focus-visible {
+    outline: none;
+    border-color: var(--terracotta);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--terracotta) 22%, transparent);
+  }
+  .field input:user-invalid,
+  .field textarea:user-invalid {
+    border-color: #c0563f;
+  }
+
+  /* Honeypot — komplett aus dem Blick und Tab-Fluss. */
+  .hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .form__submit {
+    align-self: flex-start;
+  }
+  .form__submit[disabled] {
+    opacity: 0.6;
+    cursor: progress;
+  }
+
+  .form__status {
+    margin: 0;
+    font-size: 0.95rem;
+    min-height: 1.2em;
+  }
+  .form__status.is-success {
+    color: #2f7d4f;
+    font-weight: 600;
+  }
+  .form__status.is-error {
+    color: #c0563f;
+    font-weight: 600;
+  }
+
+  /* Kontaktdaten */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+  .info-block h2 {
+    margin-bottom: var(--space-md);
+  }
+  .info-block h3 {
+    margin-bottom: var(--space-sm);
+  }
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: var(--space-md);
+  }
+  .info-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  .hours {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .hours li span:first-child {
+    color: var(--muted);
+  }
+  .hours-note {
+    margin-top: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* Karte */
+  .map-wrap {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm, 0 8px 24px rgba(0, 0, 0, 0.06));
+  }
+  .map {
+    display: block;
+    width: 100%;
+    height: clamp(18rem, 42vw, 24rem);
+    border: 0;
+    filter: saturate(0.92);
+  }
+</style>
+
+<script>
+  // Kontaktformular: AJAX-Versand an Web3Forms mit Inline-Feedback.
+  // Ohne JS funktioniert das Formular weiterhin als normaler POST.
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const submit = form?.querySelector('.form__submit') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    if (!form.checkValidity()) return; // native Validierung greift
+    e.preventDefault();
+    if (!status || !submit) return;
+
+    status.className = 'form__status';
+    status.textContent = '';
+
+    const key = (form.elements.namedItem('access_key') as HTMLInputElement)?.value;
+    if (!key) {
+      status.classList.add('is-error');
+      status.innerHTML =
+        'Das Formular ist noch nicht aktiviert. Schreib mir bitte direkt an ' +
+        `<a href="mailto:${form.dataset.email ?? ''}">E-Mail</a>.`;
+      return;
+    }
+
+    submit.disabled = true;
+    const original = submit.textContent;
+    submit.textContent = 'Wird gesendet …';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        form.reset();
+        status.classList.add('is-success');
+        status.textContent =
+          'Vielen Dank! Deine Nachricht ist angekommen — ich melde mich bald.';
+      } else {
+        throw new Error(data.message || 'Fehler');
+      }
+    } catch {
+      status.classList.add('is-error');
+      status.textContent =
+        'Hoppla, das hat nicht geklappt. Bitte versuche es später noch einmal oder schreib mir per E-Mail.';
+    } finally {
+      submit.disabled = false;
+      submit.textContent = original;
+    }
+  });
+</script>
