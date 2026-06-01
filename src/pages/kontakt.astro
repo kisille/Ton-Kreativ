@@ -17,7 +17,11 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || forms.web3formsAccessK
 const d = 0.004;
 const bbox = [location.lon - d, location.lat - d, location.lon + d, location.lat + d].join(',');
 const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${location.lat},${location.lon}`;
-const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.mapsQuery)}`;
+// Routen-Links: Standard = Google Maps (Android/Desktop), auf iOS/macOS wird
+// per Script unten auf Apple Karten umgeschaltet (öffnet die Karten-App).
+const dest = encodeURIComponent(location.mapsQuery);
+const mapsLink = `https://www.google.com/maps/dir/?api=1&destination=${dest}`;
+const mapsLinkApple = `https://maps.apple.com/?daddr=${dest}`;
 ---
 
 <BaseLayout
@@ -126,7 +130,14 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
       </div>
 
       <div class="text-center" style="margin-top: var(--space-lg);">
-        <a class="btn btn--ghost" href={mapsLink} target="_blank" rel="noopener">
+        <a
+          id="route-link"
+          class="btn btn--ghost"
+          href={mapsLink}
+          data-apple-href={mapsLinkApple}
+          target="_blank"
+          rel="noopener"
+        >
           Route planen
         </a>
       </div>
@@ -305,6 +316,20 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 </style>
 
 <script>
+  // Auf Apple-Geräten (iOS/iPadOS/macOS) den "Route planen"-Link auf Apple
+  // Karten umstellen, damit direkt die Karten-App geöffnet wird.
+  const routeLink = document.getElementById('route-link') as HTMLAnchorElement | null;
+  if (routeLink) {
+    const ua = navigator.userAgent;
+    const isAppleMaps =
+      /iPhone|iPad|iPod/.test(ua) ||
+      // iPadOS meldet sich als Mac → über Touchpunkte erkennen
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ||
+      /Macintosh/.test(ua);
+    const appleHref = routeLink.dataset.appleHref;
+    if (isAppleMaps && appleHref) routeLink.href = appleHref;
+  }
+
   // Kontaktformular: AJAX-Versand an Web3Forms mit Inline-Feedback.
   // Ohne JS funktioniert das Formular weiterhin als normaler POST.
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
