@@ -2,25 +2,20 @@
 /**
  * ServiceCard — wiederverwendbare Karte für eine Dienstleistung/Angebot.
  */
-import { site } from '../data/site';
-
 interface Props {
   title: string;
   image: string;
   alt: string;
   href?: string;
   cta?: string;
-  /** Fotonachweis; Default = Guntram Fechtig. */
-  credit?: string;
 }
 
-const { title, image, alt, href, cta, credit = site.photographer } = Astro.props;
+const { title, image, alt, href, cta } = Astro.props;
 ---
 
 <article class="card">
   <div class="card__media media">
     <img src={image} alt={alt} width="640" height="480" loading="lazy" />
-    {credit && <span class="card__credit">Foto: {credit}</span>}
   </div>
   <div class="card__body">
     <h3 class="card__title">{title}</h3>
@@ -54,17 +49,6 @@ const { title, image, alt, href, cta, credit = site.photographer } = Astro.props
   .card__media {
     aspect-ratio: 4 / 3;
     border-radius: 0;
-  }
-  .card__credit {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 0.3rem 0.7rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
-    color: var(--cream);
-    background: color-mix(in srgb, var(--ink) 55%, transparent);
-    border-radius: 0 var(--radius-sm) 0 0;
   }
   .card:hover .card__media img {
     transform: scale(1.04);

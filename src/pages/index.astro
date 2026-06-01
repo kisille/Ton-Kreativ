@@ -8,7 +8,7 @@ import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import FaqItem from '../components/FaqItem.astro';
 import ContactTeaser from '../components/ContactTeaser.astro';
-import { img, photos } from '../data/site';
+import { img, photos, site } from '../data/site';
 ---
 
 <BaseLayout>
@@ -80,6 +80,19 @@ import { img, photos } from '../data/site';
     </div>
   </section>
 
+  <!-- Dank an den Fotografen -->
+  <section class="photo-thanks">
+    <div class="container">
+      <p>
+        <span class="photo-thanks__cam" aria-hidden="true">◎</span>
+        Die wunderschönen Fotos auf dieser Seite stammen von
+        <a href={site.photographerUrl} target="_blank" rel="noopener noreferrer"
+          >{site.photographer}</a
+        > — herzlichen Dank dafür!
+      </p>
+    </div>
+  </section>
+
   <ContactTeaser />
 </BaseLayout>
 
@@ -104,5 +117,37 @@ import { img, photos } from '../data/site';
 
   .faq-list {
     border-top: 1px solid var(--line);
+  }
+
+  /* Dezentes Dankeschön an den Fotografen */
+  .photo-thanks {
+    padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .photo-thanks p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .photo-thanks__cam {
+    color: var(--terracotta);
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .photo-thanks a {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--terracotta);
+    transition: color var(--transition);
+  }
+  .photo-thanks a:hover {
+    color: var(--terracotta);
   }
 </style>

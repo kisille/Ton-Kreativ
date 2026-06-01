@@ -2,7 +2,7 @@
 /**
  * Hero — Willkommens-Sektion der Startseite mit großem Atmosphärenbild.
  */
-import { img, photos, site } from '../data/site';
+import { img, photos } from '../data/site';
 const heroImg = img(photos.janaPortrait);
 ---
 
@@ -30,9 +30,6 @@ const heroImg = img(photos.janaPortrait);
         height="1200"
         fetchpriority="high"
       />
-      <figcaption class="hero__credit">
-        Foto: {site.photographer}
-      </figcaption>
     </figure>
   </div>
 </section>
@@ -65,18 +62,6 @@ const heroImg = img(photos.janaPortrait);
     aspect-ratio: 4 / 5;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-  }
-  .hero__credit {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    margin: 0;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    color: var(--cream);
-    background: color-mix(in srgb, var(--ink) 55%, transparent);
-    border-radius: 0 var(--radius-sm) 0 0;
   }
 
   @media (min-width: 880px) {
