@@ -12,18 +12,17 @@ import { img, galleries, site } from '../data/site';
 const testimonials = [
   {
     name: 'Claudia Hartl',
-    text: 'Ein rundum gelungener Teamausflug mit viel Spass. Sympathische und geduldige Leitung, angenehme Atmosphäre — sehr empfehlenswert!',
     stars: 5,
+    text: 'Ein wirklich gelungener Teamausflug! Das Töpfern hat großen Spaß gemacht und war eine tolle gemeinsame Erfahrung. Jana hat den Kurs super sympathisch und geduldig geleitet, sodass sich alle sofort wohlgefühlt haben. Sehr angenehme Atmosphäre und absolut empfehlenswert.',
   },
   {
     name: 'Nadine',
-    text: 'Ein wunderschöner Abend zu viert, ganz ohne Vorerfahrung. Wir wurden toll unterstützt, es war kreativ, meditativ und entspannend. Man fühlt sich wie zuhause — wir kommen auf jeden Fall wieder!',
     stars: 5,
-  },
-  {
-    name: 'Lotta',
-    text: 'Super!',
-    stars: 5,
+    text:
+      'Wir waren zu viert in Janas Töpferstudio und es war ein wunderschöner Abend. Wir hatten alle keine Töpfererfahrung, wurden durch Jana aber super unterstützt und waren so alle mit dem Endergebnis happy. Jana ist unfassbar kreativ und hatte immer einen passenden Gestaltungstipp parat.\n\n' +
+      'Ich kann den Besuch bei Jana aus mehreren Gründen von Herzen empfehlen. Einerseits ist es der perfekte Abend für die Freundschaft, da man einfach zusammen am Tisch sitzt und wunderschöne Gespräche führen kann. Andererseits fanden wir das Töpfern total meditativ und waren am Ende super entspannt und erholt vom stressigen Arbeitstag. Und als ob das noch nicht genug wäre, erhält man nach dem Trocknungsprozess sein individuelles Töpfer-Kunstwerk!\n\n' +
+      'Hinzu kommt, dass man sich bei Jana einfach wohlfühlt. Sie unterstützt, wo Unterstützung gebraucht wird, und lässt einem dennoch sehr viele Freiheiten, sodass man sich „austoben“ kann. Der Töpfer-Raum ist so liebevoll gestaltet und Jana schafft es, dass man sich wie Zuhause fühlt.\n\n' +
+      'Wir kommen auf jeden Fall wieder!',
   },
 ];
 
@@ -84,6 +83,9 @@ const impressionen = galleries.impressionen.map((file, i) => ({
               {'★'.repeat(t.stars)}
             </div>
             <blockquote class="testimonial__text">{t.text}</blockquote>
+            <button class="testimonial__toggle" type="button" aria-expanded="false" hidden>
+              Mehr lesen
+            </button>
             <figcaption class="testimonial__name">{t.name}</figcaption>
           </figure>
         ))}
@@ -160,10 +162,12 @@ const impressionen = galleries.impressionen.map((file, i) => ({
   .testimonials {
     display: grid;
     gap: clamp(1.25rem, 3vw, 2rem);
+    max-width: 60rem;
+    margin-inline: auto;
   }
   @media (min-width: 760px) {
     .testimonials {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     }
   }
   .testimonial {
@@ -184,10 +188,35 @@ const impressionen = galleries.impressionen.map((file, i) => ({
   .testimonial__text {
     margin: 0;
     font-family: var(--font-display);
-    font-size: 1.2rem;
-    line-height: 1.45;
+    font-size: 1.15rem;
+    line-height: 1.5;
     color: var(--ink);
     flex: 1;
+    /* Echte Absätze aus dem \n\n im Text darstellen. */
+    white-space: pre-line;
+  }
+  /* Eingeklappter Zustand (per JS gesetzt, wenn der Text zu lang ist). */
+  .testimonial__text.is-clamped {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    white-space: pre-line;
+  }
+  .testimonial__toggle {
+    align-self: flex-start;
+    padding: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--terracotta);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .testimonial__toggle:hover {
+    color: var(--terracotta-dark);
   }
   .testimonial__name {
     font-weight: 600;
@@ -263,3 +292,37 @@ const impressionen = galleries.impressionen.map((file, i) => ({
     color: var(--ink);
   }
 </style>
+
+<script>
+  // Kundenstimmen: lange Texte einklappen und per "Mehr lesen" ausklappen.
+  // Ohne JS bleibt der volle Text sichtbar (Progressive Enhancement).
+  function setupTestimonials() {
+    document.querySelectorAll('.testimonial').forEach((card) => {
+      const text = card.querySelector('.testimonial__text') as HTMLElement | null;
+      const btn = card.querySelector('.testimonial__toggle') as HTMLButtonElement | null;
+      if (!text || !btn || btn.dataset.ready) return;
+
+      text.classList.add('is-clamped');
+      // Nur wenn der Text im eingeklappten Zustand überläuft, lohnt der Button.
+      if (text.scrollHeight - text.clientHeight > 4) {
+        btn.hidden = false;
+        btn.dataset.ready = '1';
+        btn.addEventListener('click', () => {
+          const clamped = text.classList.toggle('is-clamped');
+          btn.setAttribute('aria-expanded', String(!clamped));
+          btn.textContent = clamped ? 'Mehr lesen' : 'Weniger anzeigen';
+        });
+      } else {
+        // Kurzer Text: kein Einklappen nötig.
+        text.classList.remove('is-clamped');
+      }
+    });
+  }
+
+  // Nach dem Laden der Schriften messen (sonst stimmen die Zeilenhöhen nicht).
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(setupTestimonials);
+  } else {
+    setupTestimonials();
+  }
+</script>
