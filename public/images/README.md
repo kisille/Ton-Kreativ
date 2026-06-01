@@ -26,7 +26,7 @@ Empfehlung: Längste Kante ca. **2000 px**, Dateigröße < ~1 MB pro Bild.
 | `afterwork-painting.jpg` | Gemütliche Abendrunde | quer | Events |
 | `gross-und-klein.jpg` | Erwachsene + Kinder zusammen | quer | Events |
 | `galerie-malzeit-1.jpg` … `-4.jpg` | bemalte Werkstücke | quadratisch | Buche deine Malzeit |
-| `galerie-impressionen-1.jpg` … `-7.jpg` | schönste Eindrücke/Werke | quadratisch | Impressionen & Feedback |
+| `galerie-impressionen-1.jpg` … `-8.jpg` | schönste Eindrücke/Werke | quadratisch | Impressionen & Feedback |
 
 > Tipp zur Ausrichtung: „hochkant" wird hochformatig angezeigt, „quer"
 > querformatig, „quadratisch" wird mittig quadratisch zugeschnitten. Bilder

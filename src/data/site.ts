@@ -80,6 +80,7 @@ export const galleries = {
     'galerie-impressionen-5.jpg',
     'galerie-impressionen-6.jpg',
     'galerie-impressionen-7.jpg',
+    'galerie-impressionen-8.jpg',
   ],
 } as const;
 
