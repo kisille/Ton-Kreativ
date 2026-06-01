@@ -158,29 +158,26 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     transition: transform var(--transition), opacity var(--transition);
   }
 
-  /* --------- Desktop: zweizeiliger Header (Wortmarke oben, Navigation mittig darunter) --------- */
+  /* --------- Desktop: Wortmarke links, Navigation rechts auf zwei Zeilen --------- */
   @media (min-width: 1241px) {
     .nav-bar {
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding-block: 0.7rem;
-    }
-    .brand {
-      font-size: 1.45rem;
+      justify-content: space-between;
+      padding-block: 0.85rem;
     }
     .nav {
-      width: 100%;
+      flex: 1;
     }
     .nav__list {
-      justify-content: center;
+      justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 0.5rem clamp(0.6rem, 0.9vw, 0.95rem);
+      gap: 0.6rem clamp(1rem, 1.5vw, 1.5rem);
+      max-width: 54rem;
+      margin-left: auto;
     }
     .nav__link {
-      font-size: 0.82rem;
-      padding: 0.3rem 0;
+      font-size: 1rem;
+      padding: 0.25rem 0;
     }
   }
 
