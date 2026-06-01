@@ -55,6 +55,7 @@ export const photos = {
   janaPortrait: 'jana-portrait.jpg',
   ueberMich1: 'atelier-ueber-mich-1.jpg',
   ueberMich2: 'atelier-ueber-mich-2.jpg',
+  ueberMichVision: 'ueber-mich-vision.jpg',
   kinderToepfern: 'kinder-toepfern.jpg',
   veranstaltungen: 'veranstaltungen.jpg',
   malzeit: 'malzeit.jpg',
@@ -80,7 +81,6 @@ export const galleries = {
     'galerie-impressionen-4.jpg',
     'galerie-impressionen-5.jpg',
     'galerie-impressionen-6.jpg',
-    'galerie-impressionen-7.jpg',
   ],
 } as const;
 

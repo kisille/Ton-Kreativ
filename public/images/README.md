@@ -16,9 +16,10 @@ Empfehlung: Längste Kante ca. **2000 px**, Dateigröße < ~1 MB pro Bild.
 
 | Dateiname | Motiv | Ausrichtung | Wo |
 |---|---|---|---|
-| `jana-portrait.jpg` | Jana, Porträt | hochkant | Startseite-Hero & Über mich |
+| `jana-portrait.jpg` | Jana, Porträt | hochkant | Startseite-Hero |
 | `atelier-ueber-mich-1.jpg` | Atelier / Jana bei der Arbeit | hochkant | Über mich |
 | `atelier-ueber-mich-2.jpg` | Atelier / Detail | hochkant | Über mich |
+| `ueber-mich-vision.jpg` | Jana mit Kind (persönlich) | quer | Über mich (Vision) |
 | `malzeit.jpg` | Keramik bemalen / Malplatz | hochkant | Buche deine Malzeit & Events |
 | `toepfern.jpg` | Töpfern an der Scheibe / Ton | hochkant | Nutzungspreise |
 | `schwangerschaft-erinnerungen.jpg` | Hand-/Fussabdruck, Babyhand | hochkant | Erinnerungen |
@@ -28,7 +29,7 @@ Empfehlung: Längste Kante ca. **2000 px**, Dateigröße < ~1 MB pro Bild.
 | `gross-und-klein.jpg` | Erwachsene + Kind zusammen | quer | Events (Karte) |
 | `gross-und-klein-detail.jpg` | Töpfern (Kind/Hände am Ton) | hochkant | Events (Workshop-Detail) |
 | `galerie-malzeit-1.jpg` … `-4.jpg` | bemalte Werkstücke | quadratisch | Buche deine Malzeit |
-| `galerie-impressionen-1.jpg` … `-7.jpg` | schönste Eindrücke/Werke | quadratisch | Impressionen & Feedback |
+| `galerie-impressionen-1.jpg` … `-6.jpg` | schönste Eindrücke/Werke | quadratisch | Impressionen & Feedback |
 
 > Tipp zur Ausrichtung: „hochkant" wird hochformatig angezeigt, „quer"
 > querformatig, „quadratisch" wird mittig quadratisch zugeschnitten. Bilder
