@@ -203,6 +203,13 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
       padding-top: env(safe-area-inset-top);
     }
 
+    /* Wortmarke über dem geöffneten Menü-Overlay (z-index: 90) halten,
+       damit "Ton-kreativ" auch bei offenem Menü sichtbar bleibt. */
+    .brand {
+      position: relative;
+      z-index: 110;
+    }
+
     .nav-toggle {
       display: inline-flex;
     }
