@@ -160,6 +160,11 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
   /* --------- Desktop: Wortmarke links, Navigation rechts auf zwei Zeilen --------- */
   @media (min-width: 1241px) {
+    /* Header über die volle Bildschirmbreite (nicht auf Inhaltsbreite begrenzt),
+       damit die Wortmarke ganz links am Rand sitzt. */
+    .site-header .container {
+      max-width: none;
+    }
     /* Wortmarke links | Navigation mittig (page-zentriert) | Ausgleich rechts */
     .nav-bar {
       display: grid;
@@ -170,8 +175,6 @@ const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
     }
     .brand {
       justify-self: start;
-      /* Wortmarke näher an den linken Rand. */
-      margin-left: -2.5rem;
     }
     .nav__list {
       justify-content: center;
