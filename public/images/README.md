@@ -20,6 +20,7 @@ Empfehlung: Längste Kante ca. **2000 px**, Dateigröße < ~1 MB pro Bild.
 | `atelier-ueber-mich-1.jpg` | Atelier / Jana bei der Arbeit | hochkant | Über mich |
 | `atelier-ueber-mich-2.jpg` | Atelier / Detail | hochkant | Über mich |
 | `ueber-mich-vision.jpg` | Jana mit Kind (persönlich) | quer | Über mich (Vision) |
+| `ueber-mich-story.jpg` | Jana mit Kind (persönlich) | quer | Über mich (Meine Geschichte) |
 | `malzeit.jpg` | Keramik bemalen (Hand am Becher) | hochkant | Events-Karte & Malzeit-Galerie |
 | `malzeit-kind.jpg` | Kind beim Bemalen | hochkant | Buche deine Malzeit (Hero) |
 | `toepfern.jpg` | Töpfern an der Scheibe / Ton | hochkant | Nutzungspreise |

@@ -56,6 +56,7 @@ export const photos = {
   ueberMich1: 'atelier-ueber-mich-1.jpg',
   ueberMich2: 'atelier-ueber-mich-2.jpg',
   ueberMichVision: 'ueber-mich-vision.jpg',
+  ueberMichStory: 'ueber-mich-story.jpg',
   kinderToepfern: 'kinder-toepfern.jpg',
   veranstaltungen: 'veranstaltungen.jpg',
   malzeit: 'malzeit.jpg',
