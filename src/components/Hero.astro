@@ -40,8 +40,11 @@ const heroImg = img(photos.heroHome);
   .hero {
     position: relative;
     display: flex;
-    align-items: flex-end;
-    min-height: clamp(30rem, 82vh, 46rem);
+    align-items: center;
+    /* Füllt die volle Bildschirmhöhe — das Bild geht bis zum unteren Rand,
+       die nächste Sektion ("Was dich erwartet") liegt erst unter der Kante. */
+    min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
     isolation: isolate;
   }
