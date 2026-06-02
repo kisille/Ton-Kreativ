@@ -16,8 +16,9 @@
   --sand-soft: #efe7d8;      /* sanfter Sand für Karten */
   --terracotta: #be6a4b;     /* Akzent */
   --terracotta-dark: #a4583c;/* Hover / aktiver Zustand */
-  --ink: #26211c;            /* Text — Anthrazit/Schwarz */
-  --muted: #6f665c;          /* gedämpfter Text */
+  --ink: #26211c;            /* Überschriften / volle Stärke (100%) */
+  --ink-soft: #423b33;       /* Fliesstext — bewusst zurückgenommen (~82%) */
+  --muted: #6f665c;          /* Neben-/Bildinfos — noch geringer */
   --line: #e2d8c6;           /* Trennlinien / Rahmen */
   --white: #ffffff;
 
@@ -77,9 +78,10 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--cream);
+  /* Fliesstext bewusst zurückgenommen; Überschriften setzen --ink (100%). */
+  color: var(--ink-soft);
   /* Sehr feine, nahtlos kachelbare Papier-/Ton-Körnung für Haptik (dezent). */
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27200%27%20height%3D%27200%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.8%27%20numOctaves%3D%272%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27200%27%20height%3D%27200%27%20filter%3D%27url%28%23n%29%27%20opacity%3D%270.04%27%2F%3E%3C%2Fsvg%3E");
-  color: var(--ink);
   font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.65;
@@ -153,6 +155,7 @@ p {
 
 strong {
   font-weight: 600;
+  color: var(--ink);
 }
 
 /* ---------------------------- Utilities ---------------------------------- */
