@@ -1,12 +1,24 @@
 ---
 /**
- * Hero — Willkommens-Sektion der Startseite mit großem Atmosphärenbild.
+ * Hero — vollflächiges Atmosphäre-Bild (Hände am Ton) mit Text-Overlay.
+ * Das Foto ist der "Star of the Show"; ein Verlauf sorgt für Lesbarkeit.
  */
 import { img, photos } from '../data/site';
-const heroImg = img(photos.janaPortrait);
+const heroImg = img(photos.heroHome);
 ---
 
 <section class="hero">
+  <img
+    class="hero__bg"
+    src={heroImg}
+    alt="Hände gestalten ein Werkstück aus Ton im Atelier Ton-kreativ"
+    width="1600"
+    height="747"
+    fetchpriority="high"
+    decoding="async"
+  />
+  <div class="hero__scrim" aria-hidden="true"></div>
+
   <div class="container hero__inner">
     <div class="hero__text">
       <span class="eyebrow">Töpfer- &amp; Keramik-Atelier · Satteins</span>
@@ -21,57 +33,84 @@ const heroImg = img(photos.janaPortrait);
         <a class="btn btn--ghost" href="/ueber-mich">Über mich</a>
       </div>
     </div>
-
-    <figure class="hero__media media">
-      <img
-        src={heroImg}
-        alt="Jana Gams in ihrem Töpfer- und Keramik-Atelier Ton-kreativ"
-        width="960"
-        height="1200"
-        fetchpriority="high"
-      />
-    </figure>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-block: clamp(2.5rem, 6vw, 5rem);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(30rem, 82vh, 46rem);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -2;
+  }
+
+  /* Verlauf für Lesbarkeit: links und unten dunkler. */
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        to right,
+        rgba(26, 22, 18, 0.72) 0%,
+        rgba(26, 22, 18, 0.45) 35%,
+        rgba(26, 22, 18, 0) 72%
+      ),
+      linear-gradient(
+        to top,
+        rgba(26, 22, 18, 0.6) 0%,
+        rgba(26, 22, 18, 0) 55%
+      );
   }
 
   .hero__inner {
-    display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
+    width: 100%;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .hero__text {
+    max-width: 40rem;
   }
 
-  .hero__text {
-    max-width: 38rem;
+  /* Helle Typografie auf dem Bild */
+  .hero .eyebrow {
+    color: color-mix(in srgb, var(--terracotta) 55%, var(--cream));
   }
   .hero h1 {
+    color: var(--cream);
     margin-bottom: var(--space-lg);
   }
+  .hero .lead {
+    /* etwas zurückgenommen (Hierarchie), aber gut lesbar auf dem Bild */
+    color: color-mix(in srgb, var(--cream) 88%, transparent);
+    max-width: 34rem;
+  }
+
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-md);
     margin-top: var(--space-xl);
   }
-
-  .hero__media {
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+  /* Ghost-Button auf dunklem Grund hell */
+  .hero .btn--ghost {
+    color: var(--cream);
+    border-color: color-mix(in srgb, var(--cream) 55%, transparent);
   }
-
-  @media (min-width: 880px) {
-    .hero__inner {
-      grid-template-columns: 1.05fr 0.95fr;
-    }
-    .hero__media {
-      aspect-ratio: 4 / 5;
-      max-width: 30rem;
-      margin-left: auto;
-    }
+  .hero .btn--ghost:hover {
+    background: var(--cream);
+    color: var(--ink);
+    border-color: var(--cream);
   }
 </style>

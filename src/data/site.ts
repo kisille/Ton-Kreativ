@@ -53,6 +53,7 @@ export const img = (file: string): string => `${IMG_BASE}${file}`;
  */
 export const photos = {
   janaPortrait: 'jana-portrait.jpg',
+  heroHome: 'hero-home.jpg',
   ueberMich1: 'atelier-ueber-mich-1.jpg',
   ueberMich2: 'atelier-ueber-mich-2.jpg',
   ueberMichVision: 'ueber-mich-vision.jpg',
@@ -82,7 +83,6 @@ export const galleries = {
     'galerie-impressionen-3.jpg',
     'galerie-impressionen-4.jpg',
     'galerie-impressionen-5.jpg',
-    'galerie-impressionen-6.jpg',
   ],
 } as const;
 
